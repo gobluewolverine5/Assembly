@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AllGroups.h"
 
 @interface GroupBrowserViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UICollectionView *GroupCollection;
 @property (strong, nonatomic) IBOutlet UIToolbar *AssembleButton;

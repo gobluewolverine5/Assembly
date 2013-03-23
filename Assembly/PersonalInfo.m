@@ -47,4 +47,14 @@
     return [NSString stringWithFormat:@"%@ %@",first_name, last_name];
 }
 
+-(NSString*) displayEmail
+{
+    return email;
+}
+
+-(NSString*) displayPhone
+{
+    return phone_num;
+}
+
 @end

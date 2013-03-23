@@ -6,10 +6,7 @@
 //  Copyright (c) 2013 Evan Hsu. All rights reserved.
 //
 
-#import <AddressBookUI/AddressBookUI.h>
-#import <AddressBook/AddressBook.h>
 #import "Assemble.h"
-#import "AllGroups.h"
 #import "PersonalInfo.h"
 #import "GroupInfo.h"
 
@@ -19,11 +16,11 @@
 
 @implementation Assemble
 {
-    AllGroups *assembled_groups;
     GroupInfo *tempGroupInfo;
     NSUInteger *index;
 }
 
+@synthesize assembled_groups;
 @synthesize PeopleTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    assembled_groups = [[AllGroups alloc] init];
     tempGroupInfo = [[GroupInfo alloc]init];
     PeopleTable.delegate = self;
     PeopleTable.dataSource = self;
@@ -50,6 +46,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) viewWillDisappear:(BOOL)animated {
+    NSLog(@"testing");
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        [assembled_groups pushGroup:tempGroupInfo];
+    }
+    [super viewWillDisappear:animated];
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"This is also the correct logic");
+    if ([segue.identifier isEqualToString:@"BrowserAndAssemble"]) {
+        NSLog(@"This is RIGHT!");
+    }
+}
+
+
 
 /*~~~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~*/
 -(IBAction)readAddressBook:(id)sender
@@ -72,12 +86,33 @@
     
     NSString *first = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     NSString *last = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    NSString *email = (__bridge NSString*)ABRecordCopyValue(person, kABPersonEmailProperty);
+    ABMutableMultiValueRef email = ABRecordCopyValue(person, kABPersonEmailProperty);
+    ABMutableMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
     
     //Storing Personal Info
     [tempPersonal inputFirstName:first];
     [tempPersonal inputLastName:last];
-    [tempPersonal inputEmail:email];
+    
+    //Storing Email address
+    if (ABMultiValueGetCount(email) > 0) {
+        CFStringRef emailRef = ABMultiValueCopyValueAtIndex(email, 0);
+        [tempPersonal inputEmail:(__bridge NSString*) emailRef];
+        CFRelease(emailRef);
+    }
+    else{
+        [tempPersonal inputEmail:[NSString stringWithFormat:@"N/A"]];
+    }
+    
+    //Storing Phone Number
+    if (ABMultiValueGetCount(phone) > 0) {
+        CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phone, 0);
+        [tempPersonal inputPhoneNum:(__bridge NSString*) phoneRef];
+        CFRelease(phoneRef);
+    }
+    else{
+        [tempPersonal inputPhoneNum:[NSString stringWithFormat:@"N/A"]];
+    }
+    
     
     //Appending Personal Info to Group Info
     [tempGroupInfo pushInfo:tempPersonal];
@@ -129,8 +164,8 @@
     }
     
     //Fill the cells...
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayName]];
-    NSLog(@"%@", [[tempGroupInfo PersonAt:indexPath.row] displayName]);
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayPhone]];
+    NSLog(@"%@", [[tempGroupInfo PersonAt:indexPath.row] displayPhone]);
     
     //yourMutableArray is Array
     return cell;

@@ -15,5 +15,7 @@
 -(void) inputEmail:(NSString*) e_mail;
 -(void) inputPhoneNum:(NSString*) p_num;
 -(NSString*) displayName;
+-(NSString*) displayEmail;
+-(NSString*) displayPhone;
 
 @end

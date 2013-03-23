@@ -9,6 +9,11 @@
 
 #import "GroupBrowserViewController.h"
 #import "GroupCell.h"
+#import "AllGroups.h"
+#import "PersonalInfo.h"
+#import "GroupInfo.h"
+#import "Assemble.h"
+
 @interface GroupBrowserViewController ()
 
 @end
@@ -17,9 +22,11 @@
     NSArray * image_array;
     NSArray * name_array;
     NSString *firstName;
+    AllGroups *assembled_groups;
 }
 
 @synthesize testResult;
+@synthesize GroupCollection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,11 +40,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    assembled_groups = [[AllGroups alloc] init];
+    
     [[self GroupCollection] setDelegate:self];
     [[self GroupCollection] setDataSource:self];
     
 	image_array = [[NSArray alloc] initWithObjects:@"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", nil];
     name_array = [[NSArray alloc] initWithObjects:@"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", nil];
+    
+    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [GroupCollection reloadData];
+    if (assembled_groups.count > 0) {
+        NSLog(@"%@", [[[assembled_groups objectAt:0]PersonAt:1]displayName]);
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +65,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"This is also the correct logic");
+    if ([segue.identifier isEqualToString:@"BrowserAndAssemble"]) {
+        NSLog(@"This is the correct logic");
+        Assemble *assembleVC = (Assemble*) segue.destinationViewController;
+        assembleVC.assembled_groups = assembled_groups;
+    }
+}
+
+
 
 /*~~~~~~~~~~~~~Collection View Code~~~~~~~~~~~~~~*/
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -54,7 +86,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [image_array count];
+    return [assembled_groups count];
 }
 
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
