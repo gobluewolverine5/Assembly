@@ -13,6 +13,7 @@
 #import "PersonalInfo.h"
 #import "GroupInfo.h"
 #import "Assemble.h"
+#import "ViewGroup.h"
 
 @interface GroupBrowserViewController ()
 
@@ -23,10 +24,11 @@
     NSArray * name_array;
     NSString *firstName;
     AllGroups *assembled_groups;
+    ViewGroup *tempViewGroup;
 }
 
-@synthesize testResult;
 @synthesize GroupCollection;
+@synthesize NavigationBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,14 +51,16 @@
 	image_array = [[NSArray alloc] initWithObjects:@"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", nil];
     name_array = [[NSArray alloc] initWithObjects:@"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", nil];
     
+    NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [GroupCollection reloadData];
+     NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
     if (assembled_groups.count > 0) {
-        NSLog(@"%@", [[[assembled_groups objectAt:0]PersonAt:1]displayName]);
+        NSLog(@"%@", [[[assembled_groups objectAt:0]PersonAt:0]displayName]);
     }
 }
 
@@ -68,15 +72,20 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"This is also the correct logic");
     if ([segue.identifier isEqualToString:@"BrowserAndAssemble"]) {
-        NSLog(@"This is the correct logic");
         Assemble *assembleVC = (Assemble*) segue.destinationViewController;
         assembleVC.assembled_groups = assembled_groups;
     }
+    else if([segue.identifier isEqualToString:@"toViewGroup"]){
+        NSLog(@"preparing for segue to 'toViewGroup'");
+        NSIndexPath *tempIndex = (NSIndexPath*)sender;
+        ViewGroup *view_groupVC = (ViewGroup*) segue.destinationViewController;
+        
+        //Passing data to next view controller
+        view_groupVC.assembled_groups = assembled_groups;
+        view_groupVC.index_selected = [tempIndex row];
+    }
 }
-
-
 
 /*~~~~~~~~~~~~~Collection View Code~~~~~~~~~~~~~~*/
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -94,10 +103,25 @@
     static NSString *cell_id = @"Group";
     GroupCell *group_cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
     [[group_cell GroupImage] setImage:[UIImage imageNamed:[image_array objectAtIndex:indexPath.item]] ];
-    [[group_cell GroupName] setText:[name_array objectAtIndex:indexPath.item]];
+    [[group_cell GroupName] setText:[[assembled_groups objectAt:indexPath.item] displayGroupName]];
     return group_cell;
 }
 
+-(BOOL) collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"collection view was selected! %i", [indexPath row]);
+    [self performSegueWithIdentifier:@"toViewGroup" sender:indexPath];
+}
 
 @end
 

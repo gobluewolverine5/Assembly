@@ -94,4 +94,20 @@
     [group_members_info removeObjectAtIndex:at];
     [group_members_info insertObject:temp atIndex:at];
 }
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+-(NSString*) displayGroupName
+{
+    return group_name;
+}
+
+-(NSUInteger*) displayColorID
+{
+    return color_id;
+}
+
+-(NSMutableArray*) returnGroupMembersInfo
+{
+    return group_members_info;
+}
 @end

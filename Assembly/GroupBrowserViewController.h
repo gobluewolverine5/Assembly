@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *GroupCollection;
 @property (strong, nonatomic) IBOutlet UIToolbar *AssembleButton;
-@property (strong, nonatomic) IBOutlet UILabel *testResult;
+@property (strong, nonatomic) IBOutlet UINavigationItem *NavigationBar;
 
 
 @end

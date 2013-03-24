@@ -28,4 +28,9 @@
 -(void) changeEmail:(NSString*)newEmail index:(NSUInteger) at;
 -(void) changePhoneNum:(NSString*) newPhone index:(NSUInteger) at;
 
+//Return Data
+-(NSString*) displayGroupName;
+-(NSUInteger*) displayColorID;
+-(NSMutableArray*) returnGroupMembersInfo;
+
 @end

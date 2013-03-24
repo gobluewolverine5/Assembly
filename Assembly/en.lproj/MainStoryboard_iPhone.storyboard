@@ -15,7 +15,7 @@
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QFq-Xb-4LF">
                                 <color key="backgroundColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="353" id="mBB-nF-id0"/>
+                                    <constraint firstAttribute="height" constant="350" id="2dY-dP-uxR"/>
                                     <constraint firstAttribute="width" constant="297" id="wwF-jW-DI8"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lL0-1n-QfC">
@@ -38,46 +38,28 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usp-LU-ddj">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="a16-d4-Qlf" kind="push" id="VYx-du-Ai3"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="3xK-Hc-0Nf"/>
-                                            <constraint firstItem="usp-LU-ddj" firstAttribute="centerY" secondItem="lQj-xN-kWH" secondAttribute="centerY" type="default" id="4l7-Dy-Nk1"/>
-                                            <constraint firstItem="usp-LU-ddj" firstAttribute="top" secondItem="lQj-xN-kWH" secondAttribute="top" type="default" id="6TR-h6-fah"/>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="top" secondItem="lQj-xN-kWH" secondAttribute="top" type="default" id="BSY-DL-4te"/>
-                                            <constraint firstAttribute="bottom" secondItem="8Fw-jl-vrz" secondAttribute="bottom" constant="20" type="default" id="DZA-Xu-gdP"/>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="bottom" secondItem="lQj-xN-kWH" secondAttribute="bottom" type="default" id="ETX-c1-KGs"/>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="Hd4-V0-cud"/>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="XKv-WI-a3g"/>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="Xlp-tO-r0H"/>
-                                            <constraint firstItem="usp-LU-ddj" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="x0B-QS-I28"/>
-                                            <constraint firstItem="usp-LU-ddj" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="yV4-og-xqO"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="3Le-kO-axL"/>
+                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="BbV-6a-h1W"/>
+                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="D4m-GF-kpK"/>
+                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="top" secondItem="lQj-xN-kWH" secondAttribute="top" type="default" id="H1w-ZD-UQ4"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="bottom" secondItem="lQj-xN-kWH" secondAttribute="bottom" type="default" id="att-1y-qd8"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="dJW-BV-EeH"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Fw-jl-vrz" secondAttribute="bottom" constant="20" type="default" id="nPd-QK-WqN"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="GroupImage" destination="8Fw-jl-vrz" id="ZMY-gq-QgD"/>
                                             <outlet property="GroupName" destination="MyL-YK-mki" id="EuV-Cg-nR3"/>
-                                            <outlet property="GroupSelect" destination="usp-LU-ddj" id="fup-ed-vK7"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UAQ-xa-5Zy">
                                 <items>
-                                    <barButtonItem title="Item" id="GTg-aR-tem">
+                                    <barButtonItem title="Assemble" id="GTg-aR-tem">
                                         <connections>
                                             <segue destination="tJt-cq-tPc" kind="push" identifier="BrowserAndAssemble" id="5Nw-IU-2Aa"/>
                                         </connections>
@@ -88,26 +70,28 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UAQ-xa-5Zy" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="0xY-jg-aGk"/>
-                            <constraint firstItem="QFq-Xb-4LF" firstAttribute="top" secondItem="3" secondAttribute="top" constant="7" id="75B-7h-XLV"/>
                             <constraint firstItem="UAQ-xa-5Zy" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="ATp-Jm-qiP"/>
                             <constraint firstItem="QFq-Xb-4LF" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="11" id="Iro-e4-dJX"/>
                             <constraint firstItem="UAQ-xa-5Zy" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="JPc-m2-yNv"/>
+                            <constraint firstItem="QFq-Xb-4LF" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="lY3-bO-65O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Groups" id="j2B-dl-Hef"/>
                     <connections>
                         <outlet property="AssembleButton" destination="UAQ-xa-5Zy" id="LRU-OP-Px4"/>
                         <outlet property="GroupCollection" destination="QFq-Xb-4LF" id="lWl-gM-daY"/>
+                        <outlet property="NavigationBar" destination="j2B-dl-Hef" id="0YR-tj-YEm"/>
+                        <segue destination="a16-d4-Qlf" kind="push" identifier="toViewGroup" id="mx9-If-TjV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="119" y="-263"/>
         </scene>
-        <!--View Controller - Selected Group-->
+        <!--View Group - Selected Group-->
         <scene sceneID="796-yz-1f2">
             <objects>
-                <viewController id="a16-d4-Qlf" sceneMemberID="viewController">
+                <viewController id="a16-d4-Qlf" customClass="ViewGroup" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nb2-sY-emb">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,15 +99,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bVd-3H-wxZ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="253" id="fwT-hK-36S"/>
-                                    <constraint firstAttribute="height" constant="205" id="w9S-HI-Xld"/>
+                                    <constraint firstAttribute="height" constant="271" id="ZpN-T8-bx3"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ac0-II-bHM" style="IBUITableViewCellStyleDefault" id="RLC-pX-V8J">
-                                        <rect key="frame" x="0.0" y="22" width="253" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-II-bHM">
@@ -137,32 +120,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-Yi-Vr8">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="157" id="0UL-m9-4aS"/>
-                                    <constraint firstAttribute="height" constant="38" id="F0W-Vo-R8u"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3X-nI-okA">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BN4-SK-d8n">
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="M2T-9o-X7K"/>
-                                    <tabBarItem systemItem="more" id="fTn-Tc-Iua"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="qsk-ue-rlX"/>
+                                    <barButtonItem title="iMessage" id="wR3-94-uz7"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HEq-HA-KUl"/>
+                                    <barButtonItem title="e-mail" id="5Xp-XW-kNZ"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="adW-5u-mkN"/>
                                 </items>
-                            </tabBar>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-Eb-Xlo">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="RXg-kX-Nq4"/>
+                                    <constraint firstAttribute="width" constant="80" id="S9i-Zc-CHg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bVd-3H-wxZ" firstAttribute="top" secondItem="Nb2-sY-emb" secondAttribute="top" constant="105" id="9df-wE-xCX"/>
-                            <constraint firstItem="B3X-nI-okA" firstAttribute="leading" secondItem="Nb2-sY-emb" secondAttribute="leading" type="default" id="C1l-Lg-aAx"/>
-                            <constraint firstItem="B3X-nI-okA" firstAttribute="bottom" secondItem="Nb2-sY-emb" secondAttribute="bottom" type="default" id="Fpq-Bm-G2k"/>
-                            <constraint firstItem="Ne3-Yi-Vr8" firstAttribute="top" secondItem="Nb2-sY-emb" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Iw0-c4-Kjt"/>
-                            <constraint firstItem="B3X-nI-okA" firstAttribute="centerX" secondItem="bVd-3H-wxZ" secondAttribute="centerX" type="default" id="keq-ZJ-LRe"/>
-                            <constraint firstItem="Ne3-Yi-Vr8" firstAttribute="leading" secondItem="bVd-3H-wxZ" secondAttribute="leading" type="default" id="tgp-cs-D46"/>
-                            <constraint firstItem="B3X-nI-okA" firstAttribute="trailing" secondItem="Nb2-sY-emb" secondAttribute="trailing" type="default" id="zY7-mN-ELE"/>
+                            <constraint firstItem="bVd-3H-wxZ" firstAttribute="top" secondItem="ex1-Eb-Xlo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3dZ-Za-uVi"/>
+                            <constraint firstItem="ex1-Eb-Xlo" firstAttribute="centerX" secondItem="bVd-3H-wxZ" secondAttribute="centerX" type="default" id="6u6-kI-y7z"/>
+                            <constraint firstItem="BN4-SK-d8n" firstAttribute="trailing" secondItem="Nb2-sY-emb" secondAttribute="trailing" type="default" id="7c3-Im-Bdm"/>
+                            <constraint firstAttribute="trailing" secondItem="bVd-3H-wxZ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HAb-bJ-lgU"/>
+                            <constraint firstItem="bVd-3H-wxZ" firstAttribute="leading" secondItem="Nb2-sY-emb" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="InR-Kk-eVv"/>
+                            <constraint firstItem="BN4-SK-d8n" firstAttribute="leading" secondItem="Nb2-sY-emb" secondAttribute="leading" type="default" id="JXI-RO-04b"/>
+                            <constraint firstItem="BN4-SK-d8n" firstAttribute="bottom" secondItem="Nb2-sY-emb" secondAttribute="bottom" type="default" id="Rii-RC-UBE"/>
+                            <constraint firstItem="ex1-Eb-Xlo" firstAttribute="top" secondItem="Nb2-sY-emb" secondAttribute="top" constant="5" id="zhf-wL-rko"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Selected Group" id="UQo-jP-RSX">
@@ -172,6 +155,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="GroupImage" destination="ex1-Eb-Xlo" id="hzx-wM-3li"/>
+                        <outlet property="GroupMembers" destination="bVd-3H-wxZ" id="ser-fr-YOw"/>
+                        <outlet property="NavigationBar" destination="UQo-jP-RSX" id="4bs-p3-dHq"/>
+                        <outlet property="editButton" destination="wsm-Ii-43C" id="JRR-fZ-A7R"/>
+                        <outlet property="email" destination="5Xp-XW-kNZ" id="MY9-z5-ygh"/>
+                        <outlet property="iMessage" destination="wR3-94-uz7" id="fhe-YO-4EP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbV-Fp-ViC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -246,7 +237,7 @@
             </objects>
             <point key="canvasLocation" x="-488" y="472"/>
         </scene>
-        <!--Assemble - Title-->
+        <!--Assemble - Assemble-->
         <scene sceneID="R0E-IN-Z5U">
             <objects>
                 <viewController id="tJt-cq-tPc" customClass="Assemble" sceneMemberID="viewController">
@@ -336,8 +327,16 @@
                             <constraint firstItem="Ri0-cY-nfW" firstAttribute="bottom" secondItem="Ldf-zn-65z" secondAttribute="bottom" type="default" id="wLs-sN-KFH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="lLZ-5r-mri"/>
+                    <navigationItem key="navigationItem" title="Assemble" id="lLZ-5r-mri">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="dXB-zr-pDq">
+                            <connections>
+                                <action selector="SaveButton:" destination="tJt-cq-tPc" id="WBh-9W-GcT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="ColorSegment" destination="P0Q-RE-Dy7" id="6fy-nG-QZZ"/>
+                        <outlet property="GroupNameTextField" destination="Ldf-zn-65z" id="0jT-sz-qOg"/>
                         <outlet property="PeopleTable" destination="2Rm-2Q-hOC" id="Afs-i1-XdT"/>
                     </connections>
                 </viewController>
@@ -403,6 +402,61 @@
     <resources>
         <image name="images.jpeg" width="170" height="171"/>
     </resources>
+    <classes>
+        <class className="Assemble" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Assemble.h"/>
+            <relationships>
+                <relationship kind="action" name="SaveButton:"/>
+                <relationship kind="action" name="readAddressBook:"/>
+                <relationship kind="outlet" name="ColorSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="GroupNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PeopleTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="GroupBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="AssembleButton" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="GroupCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="numOfGroups" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="GroupCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="GroupSelect" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewGroup" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewGroup.h"/>
+            <relationships>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupMembers" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="email" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="iMessage" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

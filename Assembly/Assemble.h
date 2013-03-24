@@ -11,10 +11,16 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface Assemble : UIViewController<ABPeoplePickerNavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface Assemble : UIViewController<ABPeoplePickerNavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (nonatomic) IBOutlet AllGroups *assembled_groups;
+@property (nonatomic) AllGroups *assembled_groups;
+
 @property (strong, nonatomic) IBOutlet UITableView *PeopleTable;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *ColorSegment;
+@property (strong, nonatomic) IBOutlet UITextField *GroupNameTextField;
+
+- (IBAction)SaveButton:(id)sender;
+
 
 -(IBAction)readAddressBook:(id)sender;
 

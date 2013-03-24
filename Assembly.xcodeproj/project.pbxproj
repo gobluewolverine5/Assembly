@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9905153F16FEA39E00989C54 /* ViewGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905153E16FEA39E00989C54 /* ViewGroup.m */; };
 		992C64E216FBD4D600CEA5C1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992C64E116FBD4D600CEA5C1 /* AddressBook.framework */; };
 		992C64E416FBD4DB00CEA5C1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 992C64E316FBD4DB00CEA5C1 /* AddressBookUI.framework */; };
 		992C64E716FBE22300CEA5C1 /* Assemble.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64E616FBE22300CEA5C1 /* Assemble.m */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9905153D16FEA39E00989C54 /* ViewGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewGroup.h; sourceTree = "<group>"; };
+		9905153E16FEA39E00989C54 /* ViewGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewGroup.m; sourceTree = "<group>"; };
 		992C64E116FBD4D600CEA5C1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		992C64E316FBD4DB00CEA5C1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		992C64E516FBE22300CEA5C1 /* Assemble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assemble.h; sourceTree = "<group>"; };
@@ -144,10 +147,12 @@
 		992C64EE16FC22FF00CEA5C1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				992C64E516FBE22300CEA5C1 /* Assemble.h */,
-				992C64E616FBE22300CEA5C1 /* Assemble.m */,
 				99F7365816FA1DC40098BAE6 /* GroupBrowserViewController.h */,
 				99F7365916FA1DC40098BAE6 /* GroupBrowserViewController.m */,
+				992C64E516FBE22300CEA5C1 /* Assemble.h */,
+				992C64E616FBE22300CEA5C1 /* Assemble.m */,
+				9905153D16FEA39E00989C54 /* ViewGroup.h */,
+				9905153E16FEA39E00989C54 /* ViewGroup.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 				992C64ED16FC221F00CEA5C1 /* GroupInfo.m in Sources */,
 				992C64F216FC25BD00CEA5C1 /* PersonalInfo.m in Sources */,
 				992C64F516FC2EBA00CEA5C1 /* AllGroups.m in Sources */,
+				9905153F16FEA39E00989C54 /* ViewGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +478,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
 				INFOPLIST_FILE = "Assembly/Assembly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -483,6 +490,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
 				INFOPLIST_FILE = "Assembly/Assembly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

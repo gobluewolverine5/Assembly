@@ -20,8 +20,13 @@
     NSUInteger *index;
 }
 
+//Shared Variables
 @synthesize assembled_groups;
+
+//View Controller Objects
 @synthesize PeopleTable;
+@synthesize ColorSegment;
+@synthesize GroupNameTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +43,7 @@
     tempGroupInfo = [[GroupInfo alloc]init];
     PeopleTable.delegate = self;
     PeopleTable.dataSource = self;
+    GroupNameTextField.delegate = self;
 	// Do any additional setup after loading the view.
 }
 
@@ -50,7 +56,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
     NSLog(@"testing");
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        [assembled_groups pushGroup:tempGroupInfo];
+        
     }
     [super viewWillDisappear:animated];
 }
@@ -63,9 +69,28 @@
     }
 }
 
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 
+-(IBAction)SaveButton:(id)sender
+{
+    //Saving the Group Name
+    [tempGroupInfo updateGroupName:GroupNameTextField.text];
+    
+    //Saving Color ID information
+    [tempGroupInfo updateColorID:(NSUInteger*)[ColorSegment selectedSegmentIndex]];
+    
+    //Pusing Group object into assembled_groups array
+    [assembled_groups pushGroup:tempGroupInfo];
+    
+    [[self navigationController]popViewControllerAnimated:YES];
+}
 
 /*~~~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~*/
+
 -(IBAction)readAddressBook:(id)sender
 {
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
@@ -144,6 +169,8 @@
     //grab indexPath of the array
 }
 
+/*~~~~~~~~~~~~~~~~TableView Code~~~~~~~~~~~~~~~~~~~*/
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -164,11 +191,39 @@
     }
     
     //Fill the cells...
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayPhone]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayName]];
     NSLog(@"%@", [[tempGroupInfo PersonAt:indexPath.row] displayPhone]);
     
     //yourMutableArray is Array
     return cell;
+}
+
+-(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUInteger row = (NSUInteger)[indexPath row];
+    NSUInteger count = [tempGroupInfo count];
+    
+    if (row < count) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else{
+        return UITableViewCellEditingStyleNone;
+    }
+    
+}
+
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger row = (NSUInteger)[indexPath row];
+    NSUInteger count = [tempGroupInfo count];
+    
+    if (row < count) {
+        [tempGroupInfo deleteInfo:row];
+    }
+}
+
+-(void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [PeopleTable reloadData];
 }
 
 @end
