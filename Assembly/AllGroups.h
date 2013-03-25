@@ -18,7 +18,7 @@
 -(void) removeGroup:(NSUInteger) at;
 
 -(void) updateGroupName:(NSString*)newName at:(NSUInteger) index;
--(void) updateColorID:(NSUInteger*)color at:(NSUInteger) index;
+-(void) updateColorID:(int)color at:(NSUInteger) index;
 
 -(GroupInfo*) objectAt:(NSUInteger) index;
 

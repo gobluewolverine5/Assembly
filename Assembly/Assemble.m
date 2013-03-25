@@ -81,7 +81,7 @@
     [tempGroupInfo updateGroupName:GroupNameTextField.text];
     
     //Saving Color ID information
-    [tempGroupInfo updateColorID:(NSUInteger*)[ColorSegment selectedSegmentIndex]];
+    [tempGroupInfo updateColorID:[ColorSegment selectedSegmentIndex]];
     
     //Pusing Group object into assembled_groups array
     [assembled_groups pushGroup:tempGroupInfo];
@@ -119,25 +119,28 @@
     [tempPersonal inputLastName:last];
     
     //Storing Email address
-    if (ABMultiValueGetCount(email) > 0) {
-        CFStringRef emailRef = ABMultiValueCopyValueAtIndex(email, 0);
+
+    for (int i = 0; i < ABMultiValueGetCount(email); i++) {
+        CFStringRef emailRef = ABMultiValueCopyValueAtIndex(email, i);
         [tempPersonal inputEmail:(__bridge NSString*) emailRef];
         CFRelease(emailRef);
     }
-    else{
-        [tempPersonal inputEmail:[NSString stringWithFormat:@"N/A"]];
-    }
     
     //Storing Phone Number
-    if (ABMultiValueGetCount(phone) > 0) {
-        CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phone, 0);
+    for (int i = 0; i < ABMultiValueGetCount(phone); i++) {
+        CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phone, i);
         [tempPersonal inputPhoneNum:(__bridge NSString*) phoneRef];
         CFRelease(phoneRef);
     }
-    else{
-        [tempPersonal inputPhoneNum:[NSString stringWithFormat:@"N/A"]];
-    }
     
+    //Initializing default email, phone and iMessage addresses
+    if (ABMultiValueGetCount(email)) {
+        [tempPersonal updateDefaultEmail:0];
+    }
+    if (ABMultiValueGetCount(phone) > 0) {
+        [tempPersonal updateDefaultPhone:0]; //Sets default phone # to first phone #
+        [tempPersonal updatedefaultImessage:NO at:0]; //Sets default iMessage to first Phone #
+    }
     
     //Appending Personal Info to Group Info
     [tempGroupInfo pushInfo:tempPersonal];

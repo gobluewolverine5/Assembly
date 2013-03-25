@@ -14,6 +14,11 @@
 		992C64ED16FC221F00CEA5C1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64EC16FC221F00CEA5C1 /* GroupInfo.m */; };
 		992C64F216FC25BD00CEA5C1 /* PersonalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64F116FC25BD00CEA5C1 /* PersonalInfo.m */; };
 		992C64F516FC2EBA00CEA5C1 /* AllGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64F416FC2EBA00CEA5C1 /* AllGroups.m */; };
+		99E3B49616FFCD4200C0C69C /* BlueIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49216FFCD4200C0C69C /* BlueIcon.png */; };
+		99E3B49716FFCD4200C0C69C /* GreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49316FFCD4200C0C69C /* GreenIcon.png */; };
+		99E3B49816FFCD4200C0C69C /* Red Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49416FFCD4200C0C69C /* Red Icon.png */; };
+		99E3B49916FFCD4200C0C69C /* YellowIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49516FFCD4200C0C69C /* YellowIcon.png */; };
+		99E3B49C16FFE07C00C0C69C /* PersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99E3B49B16FFE07C00C0C69C /* PersonView.m */; };
 		99F7361616FA0FD20098BAE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F7361516FA0FD20098BAE6 /* UIKit.framework */; };
 		99F7361816FA0FD20098BAE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F7361716FA0FD20098BAE6 /* Foundation.framework */; };
 		99F7361A16FA0FD20098BAE6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F7361916FA0FD20098BAE6 /* CoreGraphics.framework */; };
@@ -58,6 +63,12 @@
 		992C64F116FC25BD00CEA5C1 /* PersonalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfo.m; sourceTree = "<group>"; };
 		992C64F316FC2EBA00CEA5C1 /* AllGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGroups.h; sourceTree = "<group>"; };
 		992C64F416FC2EBA00CEA5C1 /* AllGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGroups.m; sourceTree = "<group>"; };
+		99E3B49216FFCD4200C0C69C /* BlueIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueIcon.png; path = "Images/Group Icon/BlueIcon.png"; sourceTree = SOURCE_ROOT; };
+		99E3B49316FFCD4200C0C69C /* GreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenIcon.png; path = "Images/Group Icon/GreenIcon.png"; sourceTree = SOURCE_ROOT; };
+		99E3B49416FFCD4200C0C69C /* Red Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Red Icon.png"; path = "Images/Group Icon/Red Icon.png"; sourceTree = SOURCE_ROOT; };
+		99E3B49516FFCD4200C0C69C /* YellowIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YellowIcon.png; path = "Images/Group Icon/YellowIcon.png"; sourceTree = SOURCE_ROOT; };
+		99E3B49A16FFE07C00C0C69C /* PersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonView.h; sourceTree = "<group>"; };
+		99E3B49B16FFE07C00C0C69C /* PersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonView.m; sourceTree = "<group>"; };
 		99F7361216FA0FD20098BAE6 /* Assembly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assembly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F7361516FA0FD20098BAE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		99F7361716FA0FD20098BAE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +135,7 @@
 		992C64E916FBE24C00CEA5C1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				99E3B49116FFCD2D00C0C69C /* Group Icons */,
 				99F7365316FA1CDC0098BAE6 /* images.jpeg */,
 			);
 			name = Images;
@@ -153,8 +165,21 @@
 				992C64E616FBE22300CEA5C1 /* Assemble.m */,
 				9905153D16FEA39E00989C54 /* ViewGroup.h */,
 				9905153E16FEA39E00989C54 /* ViewGroup.m */,
+				99E3B49A16FFE07C00C0C69C /* PersonView.h */,
+				99E3B49B16FFE07C00C0C69C /* PersonView.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		99E3B49116FFCD2D00C0C69C /* Group Icons */ = {
+			isa = PBXGroup;
+			children = (
+				99E3B49216FFCD4200C0C69C /* BlueIcon.png */,
+				99E3B49316FFCD4200C0C69C /* GreenIcon.png */,
+				99E3B49416FFCD4200C0C69C /* Red Icon.png */,
+				99E3B49516FFCD4200C0C69C /* YellowIcon.png */,
+			);
+			name = "Group Icons";
 			sourceTree = "<group>";
 		};
 		99F7360916FA0FD20098BAE6 = {
@@ -314,6 +339,10 @@
 				99F7362F16FA0FD20098BAE6 /* MainStoryboard_iPhone.storyboard in Resources */,
 				99F7363216FA0FD20098BAE6 /* MainStoryboard_iPad.storyboard in Resources */,
 				99F7365416FA1CDC0098BAE6 /* images.jpeg in Resources */,
+				99E3B49616FFCD4200C0C69C /* BlueIcon.png in Resources */,
+				99E3B49716FFCD4200C0C69C /* GreenIcon.png in Resources */,
+				99E3B49816FFCD4200C0C69C /* Red Icon.png in Resources */,
+				99E3B49916FFCD4200C0C69C /* YellowIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +386,7 @@
 				992C64F216FC25BD00CEA5C1 /* PersonalInfo.m in Sources */,
 				992C64F516FC2EBA00CEA5C1 /* AllGroups.m in Sources */,
 				9905153F16FEA39E00989C54 /* ViewGroup.m in Sources */,
+				99E3B49C16FFE07C00C0C69C /* PersonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

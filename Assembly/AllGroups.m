@@ -46,7 +46,7 @@
     [Groups insertObject:tempGroupInfo atIndex:index];
 }
 
--(void) updateColorID:(NSUInteger *)color at:(NSUInteger)index
+-(void) updateColorID:(int)color at:(NSUInteger)index
 {
     GroupInfo *tempGroupsInfo = [[GroupInfo alloc]init];
     [tempGroupsInfo updateColorID:color];

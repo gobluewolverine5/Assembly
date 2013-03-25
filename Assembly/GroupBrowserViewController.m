@@ -20,8 +20,6 @@
 @end
 
 @implementation GroupBrowserViewController{
-    NSArray * image_array;
-    NSArray * name_array;
     NSString *firstName;
     AllGroups *assembled_groups;
     ViewGroup *tempViewGroup;
@@ -47,9 +45,6 @@
     
     [[self GroupCollection] setDelegate:self];
     [[self GroupCollection] setDataSource:self];
-    
-	image_array = [[NSArray alloc] initWithObjects:@"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", @"images.jpeg", nil];
-    name_array = [[NSArray alloc] initWithObjects:@"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", @"first", @"second", @"third", @"fourth", nil];
     
     NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
     
@@ -102,7 +97,7 @@
 {
     static NSString *cell_id = @"Group";
     GroupCell *group_cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
-    [[group_cell GroupImage] setImage:[UIImage imageNamed:[image_array objectAtIndex:indexPath.item]] ];
+    [[group_cell GroupImage] setImage:[UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
     [[group_cell GroupName] setText:[[assembled_groups objectAt:indexPath.item] displayGroupName]];
     return group_cell;
 }

@@ -15,7 +15,7 @@
 
 //Setting the Group Name and Color ID
 -(void) updateGroupName:(NSString*) groupName;
--(void) updateColorID:(NSUInteger*) color;
+-(void) updateColorID:(int) color;
 
 //Adding & Deleting Personal Info objects in GroupInfo
 -(void) pushInfo: (PersonalInfo*) p_info;
@@ -30,7 +30,8 @@
 
 //Return Data
 -(NSString*) displayGroupName;
--(NSUInteger*) displayColorID;
+-(int) displayColorID;
+-(NSString*) displayPicture;
 -(NSMutableArray*) returnGroupMembersInfo;
 
 @end

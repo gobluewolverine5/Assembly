@@ -13,7 +13,7 @@
 {
     NSMutableArray *group_members_info;
     NSString *group_name;
-    NSUInteger *color_id;
+    int color_id;
 }
 
 -(id) init
@@ -39,7 +39,7 @@
     group_name = groupName;
 }
 
--(void) updateColorID:(NSUInteger*)color
+-(void) updateColorID:(int)color
 {
     color_id = color;
 }
@@ -101,9 +101,26 @@
     return group_name;
 }
 
--(NSUInteger*) displayColorID
+-(int) displayColorID
 {
     return color_id;
+}
+
+-(NSString*) displayPicture
+{
+    NSLog(@"color is: %i", color_id);
+    switch (color_id) {
+        case 0:
+            return @"BlueIcon.png";
+        case 1:
+            return @"GreenIcon.png";
+        case 2:
+            return @"Red Icon.png";
+        case 3:
+            return @"YellowIcon.png";
+        default:
+            return @"Images.jpeg";
+    }
 }
 
 -(NSMutableArray*) returnGroupMembersInfo

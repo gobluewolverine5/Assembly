@@ -7,12 +7,15 @@
 //
 
 #import "ViewGroup.h"
+#import "PersonView.h"
 
 @interface ViewGroup ()
 
 @end
 
-@implementation ViewGroup
+@implementation ViewGroup{
+    int person_index;
+}
 
 //Shared Variables
 @synthesize assembled_groups;
@@ -45,6 +48,10 @@
     [GroupMembers reloadData];
 
     NavigationBar.title = [[assembled_groups objectAt:index_selected] displayGroupName];
+    
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]]];
+    
+    person_index = 0;
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -58,18 +65,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toPersonView"]) {
+        PersonView *tempPersonViewVC = (PersonView*) segue.destinationViewController;
+        tempPersonViewVC.group_index = index_selected;
+        tempPersonViewVC.person_index = person_index;
+        tempPersonViewVC.assembled_groups = assembled_groups;
+    }
+}
 
 /*~~~~~~~~~~~~TableView Code~~~~~~~~~~~~~~*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //AudioServicesPlaySystemSound(1104);
-    /*
-     NSLog(@"Index %@ selected", [history_queue index:indexPath.row]);
-     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     [myCalculator resultHistoryPress:[history_queue index:indexPath.row]];
-     [self displayCurrent];
-     */
-    //grab indexPath of the array
+    person_index = indexPath.row;
+    [self performSegueWithIdentifier:@"toPersonView" sender:NULL];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
