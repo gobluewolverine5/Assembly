@@ -86,6 +86,15 @@
     //Pusing Group object into assembled_groups array
     [assembled_groups pushGroup:tempGroupInfo];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:assembled_groups forKey:@"SavedGroups"];
+    if ([defaults synchronize]){
+        NSLog(@"Successful save!");
+    }else{
+        NSLog(@"Unsuccessful Save!");
+    }
+    
+    
     [[self navigationController]popViewControllerAnimated:YES];
 }
 

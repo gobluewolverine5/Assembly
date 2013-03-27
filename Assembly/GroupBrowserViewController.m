@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"loaded the browser");
     
     assembled_groups = [[AllGroups alloc] init];
     
@@ -47,6 +48,11 @@
     [[self GroupCollection] setDataSource:self];
     
     NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    AllGroups *temp_groups = [defaults objectForKey:@"SavedGroups"];
+    assembled_groups = temp_groups;
+    
+    [GroupCollection reloadData];
     
 }
 
@@ -54,9 +60,6 @@
 {
     [GroupCollection reloadData];
      NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
-    if (assembled_groups.count > 0) {
-        NSLog(@"%@", [[[assembled_groups objectAt:0]PersonAt:0]displayName]);
-    }
 }
 
 - (void)didReceiveMemoryWarning
