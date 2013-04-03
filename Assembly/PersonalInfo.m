@@ -31,6 +31,34 @@
 	return self;
 }
 
+/*~~~~~~~~~~File Saving~~~~~~~~~~~*/
+
+-(void) encodeWithCoder:(NSCoder*) encoder
+{
+    [encoder encodeObject:first_name forKey:@"first_name"];
+    [encoder encodeObject:last_name forKey:@"last_name"];
+    [encoder encodeObject:email forKey:@"email"];
+    [encoder encodeObject:phone_num forKey:@"phone_num"];
+    [encoder encodeObject:default_email forKey:@"default_email"];
+    [encoder encodeObject:default_phone_num forKey:@"default_phone_num"];
+    [encoder encodeObject:default_imessage forKey:@"default_imessage"];
+}
+
+-(id) initWithCoder:(NSCoder*) decoder
+{
+    if ((self = [super init])) {
+        first_name = [decoder decodeObjectForKey:@"first_name"];
+        last_name = [decoder decodeObjectForKey:@"last_name"];
+        email = [decoder decodeObjectForKey:@"email"];
+        phone_num = [decoder decodeObjectForKey:@"phone_num"];
+        default_email = [decoder decodeObjectForKey:@"default_email"];
+        default_phone_num = [decoder decodeObjectForKey:@"default_phone_num"];
+        default_imessage = [decoder decodeObjectForKey:@"default_imessage"];
+    }
+    return self;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*~~~~~~~~~~~~~Input Attributes Functions~~~~~~~~~~~~~~~~*/
 
 -(void) inputFirstName:(NSString *)firstName

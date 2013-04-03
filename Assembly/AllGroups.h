@@ -10,8 +10,18 @@
 #import "GroupInfo.h"
 #import "PersonalInfo.h"
 
-@interface AllGroups : NSObject
+@class GroupInfo;
 
+@interface AllGroups : NSObject<NSCoding>
+{
+    NSMutableArray *Groups;
+}
+
+- (NSArray *)allItems;
+- (NSString *)itemArchivePath;
+- (BOOL)saveChanges;
+
+//Origin Functions
 -(NSUInteger) count;
 
 -(void) pushGroup:(GroupInfo*) newGroup;
@@ -21,5 +31,11 @@
 -(void) updateColorID:(int)color at:(NSUInteger) index;
 
 -(GroupInfo*) objectAt:(NSUInteger) index;
+
+
+//Encoding
+-(void) encodeWithCoder:(NSCoder*) encoder;
+-(id) initWithCoder:(NSCoder*) decoder;
+
 
 @end

@@ -23,10 +23,12 @@
     NSString *firstName;
     AllGroups *assembled_groups;
     ViewGroup *tempViewGroup;
+    BOOL editing;
 }
 
 @synthesize GroupCollection;
 @synthesize NavigationBar;
+@synthesize EditGroups;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,15 +44,15 @@
     [super viewDidLoad];
     NSLog(@"loaded the browser");
     
-    assembled_groups = [[AllGroups alloc] init];
-    
     [[self GroupCollection] setDelegate:self];
     [[self GroupCollection] setDataSource:self];
     
     NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    AllGroups *temp_groups = [defaults objectForKey:@"SavedGroups"];
-    assembled_groups = temp_groups;
+    
+    editing = false;
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [self.GroupCollection addGestureRecognizer:longPress];
     
     [GroupCollection reloadData];
     
@@ -58,7 +60,13 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [GroupCollection reloadData];
+    //NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
+    
+    assembled_groups = [[AllGroups alloc] init];
+    //NSLog(@"INSIDE ASSEMBLED GROUPS: %@", [[assembled_groups objectAt:0] displayGroupName]);
+   
+    [GroupCollection reloadData];//refreshing collection view
+    
      NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
 }
 
@@ -85,6 +93,32 @@
     }
 }
 
+-(IBAction)editGroups:(id)sender
+{
+    if (editing){
+       editing = false; 
+    }
+    else{
+       editing = true; 
+    }
+}
+
+/*~~~~~~~~~~~~File Saving~~~~~~~~~~~~~~~*/
+- (void)saveCustomObject:(AllGroups *)obj {
+    NSLog(@"saved custom object");
+    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:myEncodedObject forKey:@"myEncodedObjectKey"];
+}
+
+- (AllGroups *)loadCustomObjectWithKey:(NSString *)key {
+    NSLog(@"loaded custom object");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject = [defaults objectForKey:key];
+    AllGroups *obj = (AllGroups *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
+    return obj;
+}
+
 /*~~~~~~~~~~~~~Collection View Code~~~~~~~~~~~~~~*/
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -100,8 +134,12 @@
 {
     static NSString *cell_id = @"Group";
     GroupCell *group_cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
+    
     [[group_cell GroupImage] setImage:[UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
     [[group_cell GroupName] setText:[[assembled_groups objectAt:indexPath.item] displayGroupName]];
+    
+    
+
     return group_cell;
 }
 
@@ -118,7 +156,17 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"collection view was selected! %i", [indexPath row]);
-    [self performSegueWithIdentifier:@"toViewGroup" sender:indexPath];
+    if (editing) {
+
+        [assembled_groups removeGroup:indexPath.row];
+        [assembled_groups saveChanges];
+        [GroupCollection reloadData];
+        NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
+    }
+    else{
+        [self performSegueWithIdentifier:@"toViewGroup" sender:indexPath];
+    }
+    
 }
 
 @end

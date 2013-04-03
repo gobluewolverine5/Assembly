@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PersonalInfo.h"
 
-@interface GroupInfo : NSObject
+@interface GroupInfo : NSObject<NSCoding>
 
 -(NSUInteger) count;
 
@@ -33,5 +33,9 @@
 -(int) displayColorID;
 -(NSString*) displayPicture;
 -(NSMutableArray*) returnGroupMembersInfo;
+
+//File Saving
+- (void)encodeWithCoder:(NSCoder*)encoder;
+- (id)initWithCoder:(NSCoder*)decoder;
 
 @end

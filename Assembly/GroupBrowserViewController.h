@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *GroupCollection;
 @property (strong, nonatomic) IBOutlet UIToolbar *AssembleButton;
 @property (strong, nonatomic) IBOutlet UINavigationItem *NavigationBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *EditGroups;
 
+-(IBAction)editGroups:(id)sender;
 
 @end

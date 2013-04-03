@@ -146,10 +146,10 @@
 			children = (
 				99F7365516FA1D3C0098BAE6 /* GroupCell.h */,
 				99F7365616FA1D3C0098BAE6 /* GroupCell.m */,
-				992C64EB16FC221F00CEA5C1 /* GroupInfo.h */,
-				992C64EC16FC221F00CEA5C1 /* GroupInfo.m */,
 				992C64F016FC25BD00CEA5C1 /* PersonalInfo.h */,
 				992C64F116FC25BD00CEA5C1 /* PersonalInfo.m */,
+				992C64EB16FC221F00CEA5C1 /* GroupInfo.h */,
+				992C64EC16FC221F00CEA5C1 /* GroupInfo.m */,
 				992C64F316FC2EBA00CEA5C1 /* AllGroups.h */,
 				992C64F416FC2EBA00CEA5C1 /* AllGroups.m */,
 			);

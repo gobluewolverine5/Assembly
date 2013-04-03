@@ -11,17 +11,78 @@
 #import "GroupInfo.h"
 
 @implementation AllGroups
-{
-    NSMutableArray *Groups;
-}
 
 -(id) init
 {
     if(self = [super init]){
-        Groups = [[NSMutableArray alloc] init];
+        NSString *path = [self itemArchivePath];
+        Groups = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        // If the array hadn't been saved previously, create a new empty one
+        if(!Groups)
+            Groups = [[NSMutableArray alloc] init];
     }
 	return self;
 }
+
+/*~~~~~~~~~~File Saving~~~~~~~~~~~*/
+
+-(void) encodeWithCoder:(NSCoder*) encoder
+{
+    [encoder encodeObject:Groups forKey:@"Groups"];
+}
+
+-(id) initWithCoder:(NSCoder*) decoder
+{
+    if ((self = [super init])) {
+        Groups = [decoder decodeObjectForKey:@"Groups"];
+    }
+    return self;
+}
+
+/*
++ (AllGroups*) sharedStore
+{
+    static GroupInfo *sharedStore = nil;
+    if(!sharedStore)
+        sharedStore = [[super allocWithZone:nil] init];
+    
+    return sharedStore;
+}
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return [self sharedStore];
+}
+*/
+ 
+- (NSArray *)allItems
+{
+    return Groups;
+}
+
+- (NSString *)itemArchivePath
+{
+    NSArray *documentDirectories =
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                        NSUserDomainMask, YES);
+    
+    // Get one and only document directory from that list
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+- (BOOL)saveChanges
+{
+    // returns success or failure
+    NSString *path = [self itemArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:Groups
+                                       toFile:path];
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 -(NSUInteger) count
 {
@@ -58,4 +119,5 @@
 {
     return [Groups objectAtIndex:index];
 }
+
 @end

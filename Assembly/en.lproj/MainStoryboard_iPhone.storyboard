@@ -76,9 +76,16 @@
                             <constraint firstItem="QFq-Xb-4LF" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="lY3-bO-65O"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Groups" id="j2B-dl-Hef"/>
+                    <navigationItem key="navigationItem" title="Groups" id="j2B-dl-Hef">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="JjM-qw-f2S">
+                            <connections>
+                                <action selector="editGroups:" destination="2" id="H5k-pd-Zcd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="AssembleButton" destination="UAQ-xa-5Zy" id="LRU-OP-Px4"/>
+                        <outlet property="EditGroups" destination="JjM-qw-f2S" id="ph7-Rq-Mfq"/>
                         <outlet property="GroupCollection" destination="QFq-Xb-4LF" id="lWl-gM-daY"/>
                         <outlet property="NavigationBar" destination="j2B-dl-Hef" id="0YR-tj-YEm"/>
                         <segue destination="a16-d4-Qlf" kind="push" identifier="toViewGroup" id="mx9-If-TjV"/>
@@ -535,7 +542,9 @@
         <class className="GroupBrowserViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupBrowserViewController.h"/>
             <relationships>
+                <relationship kind="action" name="editGroups:"/>
                 <relationship kind="outlet" name="AssembleButton" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="EditGroups" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="GroupCollection" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
             </relationships>
@@ -545,7 +554,7 @@
             <relationships>
                 <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="GroupName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="GroupSelect" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="del" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
@@ -571,6 +580,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="ViewGroup" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewGroup.h"/>

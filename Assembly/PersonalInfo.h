@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PersonalInfo : NSObject
+@interface PersonalInfo : NSObject<NSCoding>
 
 //Input Attributes Functions
 -(void) inputFirstName:(NSString*) firstName;
@@ -32,5 +32,9 @@
 -(int) phoneCount;
 -(NSMutableArray*) emailArray;
 -(NSMutableArray*) phoneArray;
+
+//File Saving
+- (void)encodeWithCoder:(NSCoder*)encoder;
+- (id)initWithCoder:(NSCoder*)decoder;
 
 @end

@@ -27,6 +27,27 @@
 	return self;
 }
 
+/*~~~~~~~~~~File Saving~~~~~~~~~~~*/
+
+-(void) encodeWithCoder:(NSCoder*) encoder
+{
+    [encoder encodeObject:group_members_info forKey:@"group_members_info"];
+    [encoder encodeObject:group_name forKey:@"group_name"];
+    [encoder encodeInt:color_id forKey:@"color_id"];
+}
+
+-(id) initWithCoder:(NSCoder*) decoder
+{
+    if ((self = [super init])) {
+        group_members_info = [decoder decodeObjectForKey:@"group_members_info"];
+        group_name = [decoder decodeObjectForKey:@"group_name"];
+        color_id = [decoder decodeIntForKey:@"color_id"];
+    }
+    return self;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 -(NSUInteger) count
 {
     return group_members_info.count;

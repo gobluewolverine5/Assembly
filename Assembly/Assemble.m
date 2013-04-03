@@ -74,6 +74,21 @@
     [textField resignFirstResponder];
     return YES;
 }
+/*~~~~~~~~~~~~File Saving~~~~~~~~~~~~~~~*/
+- (void)saveCustomObject:(AllGroups *)obj {
+    NSLog(@"saved custom object");
+    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:myEncodedObject forKey:@"myEncodedObjectKey"];
+}
+
+- (AllGroups *)loadCustomObjectWithKey:(NSString *)key {
+    NSLog(@"load custom object");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject = [defaults objectForKey:key];
+    AllGroups *obj = (AllGroups *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
+    return obj;
+}
 
 -(IBAction)SaveButton:(id)sender
 {
@@ -86,14 +101,9 @@
     //Pusing Group object into assembled_groups array
     [assembled_groups pushGroup:tempGroupInfo];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:assembled_groups forKey:@"SavedGroups"];
-    if ([defaults synchronize]){
-        NSLog(@"Successful save!");
-    }else{
-        NSLog(@"Unsuccessful Save!");
+    if(![assembled_groups saveChanges]){
+        NSLog(@"Saving Failed!");
     }
-    
     
     [[self navigationController]popViewControllerAnimated:YES];
 }
