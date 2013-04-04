@@ -75,6 +75,73 @@
     }
 }
 
+
+/*~~~~~~~~~~~~Group Message Sending~~~~~~~~~~~~~*/
+
+-(IBAction)sendMsg:(id)sender
+{
+    /*
+    NSString *addresses = @"";
+    NSLog(@"%@", addresses);
+    
+    for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
+        addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayImessage]];
+        NSLog(@"in the loop: %@", addresses);
+        addresses = [addresses stringByAppendingString:@";"];
+        NSLog(@"I'm in the loop!");
+    }
+    //addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:0] displayImessage]];
+    
+    NSLog(@"FIRST IMSG: %@", [[[assembled_groups objectAt:index_selected] PersonAt:0] displayImessage]);
+    NSLog(@"ADDRESSES: %@", addresses);
+    
+    NSString *stringURL = [NSString stringWithFormat: @"sms:%@", addresses];
+    NSURL *url = [NSURL URLWithString:stringURL];
+    [[UIApplication sharedApplication] openURL:url];
+     */
+}
+
+-(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult: (MFMailComposeResult)result error:(NSError*)error {
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+-(IBAction)sendMail:(id)sender
+{
+    /*
+    NSString *addresses = @"";
+    for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
+        addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail]];
+        addresses = [addresses stringByAppendingString:@"; "];
+    }
+    
+    NSLog(@"ADDRESSES %@", addresses);
+    
+    NSString *stringURL = [NSString stringWithFormat:@"mailto:%@", addresses];
+    NSURL *url = [NSURL URLWithString:stringURL];
+    [[UIApplication sharedApplication] openURL:url];
+     */
+    NSMutableArray *people = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
+        [people addObject:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail]];
+    }
+    
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        mailViewController.mailComposeDelegate = self;
+        [mailViewController setSubject:@""];
+        [mailViewController setToRecipients:people];
+        
+        [self presentViewController:mailViewController animated:YES completion:NULL];
+    }
+    else{
+        NSLog(@"Could not open email");
+    }
+}
+
 /*~~~~~~~~~~~~TableView Code~~~~~~~~~~~~~~*/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -111,4 +178,5 @@
     //yourMutableArray is Array
     return cell;
 }
+
 @end

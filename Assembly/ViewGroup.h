@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AllGroups.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+#import <MessageUI/MFMessageComposeViewController.h>
 
-@interface ViewGroup : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ViewGroup : UIViewController<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic) AllGroups *assembled_groups;
 @property (nonatomic) int index_selected;
@@ -21,5 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *email;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
+- (IBAction)sendMsg:(id)sender;
+- (IBAction)sendMail:(id)sender;
 
 @end

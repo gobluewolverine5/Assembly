@@ -14,6 +14,7 @@
 		992C64ED16FC221F00CEA5C1 /* GroupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64EC16FC221F00CEA5C1 /* GroupInfo.m */; };
 		992C64F216FC25BD00CEA5C1 /* PersonalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64F116FC25BD00CEA5C1 /* PersonalInfo.m */; };
 		992C64F516FC2EBA00CEA5C1 /* AllGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 992C64F416FC2EBA00CEA5C1 /* AllGroups.m */; };
+		997E4AF8170DE93300627393 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997E4AF7170DE93300627393 /* MessageUI.framework */; };
 		99E3B49616FFCD4200C0C69C /* BlueIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49216FFCD4200C0C69C /* BlueIcon.png */; };
 		99E3B49716FFCD4200C0C69C /* GreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49316FFCD4200C0C69C /* GreenIcon.png */; };
 		99E3B49816FFCD4200C0C69C /* Red Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E3B49416FFCD4200C0C69C /* Red Icon.png */; };
@@ -63,6 +64,7 @@
 		992C64F116FC25BD00CEA5C1 /* PersonalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfo.m; sourceTree = "<group>"; };
 		992C64F316FC2EBA00CEA5C1 /* AllGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllGroups.h; sourceTree = "<group>"; };
 		992C64F416FC2EBA00CEA5C1 /* AllGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllGroups.m; sourceTree = "<group>"; };
+		997E4AF7170DE93300627393 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		99E3B49216FFCD4200C0C69C /* BlueIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlueIcon.png; path = "Images/Group Icon/BlueIcon.png"; sourceTree = SOURCE_ROOT; };
 		99E3B49316FFCD4200C0C69C /* GreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GreenIcon.png; path = "Images/Group Icon/GreenIcon.png"; sourceTree = SOURCE_ROOT; };
 		99E3B49416FFCD4200C0C69C /* Red Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Red Icon.png"; path = "Images/Group Icon/Red Icon.png"; sourceTree = SOURCE_ROOT; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				997E4AF8170DE93300627393 /* MessageUI.framework in Frameworks */,
 				992C64E416FBD4DB00CEA5C1 /* AddressBookUI.framework in Frameworks */,
 				992C64E216FBD4D600CEA5C1 /* AddressBook.framework in Frameworks */,
 				99F7361616FA0FD20098BAE6 /* UIKit.framework in Frameworks */,
@@ -204,6 +207,7 @@
 		99F7361416FA0FD20098BAE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				997E4AF7170DE93300627393 /* MessageUI.framework */,
 				992C64E316FBD4DB00CEA5C1 /* AddressBookUI.framework */,
 				992C64E116FBD4D600CEA5C1 /* AddressBook.framework */,
 				99F7361516FA0FD20098BAE6 /* UIKit.framework */,
