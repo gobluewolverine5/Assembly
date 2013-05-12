@@ -78,27 +78,27 @@
 
 /*~~~~~~~~~~~~Group Message Sending~~~~~~~~~~~~~*/
 
+-(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(IBAction)sendMsg:(id)sender
 {
-    /*
-    NSString *addresses = @"";
-    NSLog(@"%@", addresses);
     
+    NSMutableArray *recipients = [[NSMutableArray alloc] init];
     for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
-        addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayImessage]];
-        NSLog(@"in the loop: %@", addresses);
-        addresses = [addresses stringByAppendingString:@";"];
-        NSLog(@"I'm in the loop!");
+        [recipients addObject:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayImessage]];
     }
-    //addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:0] displayImessage]];
     
-    NSLog(@"FIRST IMSG: %@", [[[assembled_groups objectAt:index_selected] PersonAt:0] displayImessage]);
-    NSLog(@"ADDRESSES: %@", addresses);
-    
-    NSString *stringURL = [NSString stringWithFormat: @"sms:%@", addresses];
-    NSURL *url = [NSURL URLWithString:stringURL];
-    [[UIApplication sharedApplication] openURL:url];
-     */
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if ([MFMessageComposeViewController canSendText]) {
+        //controller.body = @"This is a test sent by Assembly";
+        controller.recipients = recipients;
+        controller.messageComposeDelegate = self;
+        
+        [self presentViewController:controller animated:YES completion:nil];
+    }
 }
 
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult: (MFMailComposeResult)result error:(NSError*)error {
@@ -109,19 +109,6 @@
 
 -(IBAction)sendMail:(id)sender
 {
-    /*
-    NSString *addresses = @"";
-    for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
-        addresses = [addresses stringByAppendingString:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail]];
-        addresses = [addresses stringByAppendingString:@"; "];
-    }
-    
-    NSLog(@"ADDRESSES %@", addresses);
-    
-    NSString *stringURL = [NSString stringWithFormat:@"mailto:%@", addresses];
-    NSURL *url = [NSURL URLWithString:stringURL];
-    [[UIApplication sharedApplication] openURL:url];
-     */
     NSMutableArray *people = [[NSMutableArray alloc]init];
     
     for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
