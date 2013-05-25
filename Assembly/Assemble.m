@@ -229,6 +229,8 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayName]];
     NSLog(@"%@", [[tempGroupInfo PersonAt:indexPath.row] displayPhone]);
     
+    [[cell imageView] setImage:[[tempGroupInfo PersonAt: indexPath.row]displayPic]];
+    
     //yourMutableArray is Array
     return cell;
 }
