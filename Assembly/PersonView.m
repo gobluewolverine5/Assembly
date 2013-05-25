@@ -69,8 +69,12 @@
     LastName.adjustsLetterSpacingToFitWidth = YES;
     LastName.text = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayLast];
     
-    PersonImage.image = [UIImage imageNamed:[[assembled_groups objectAt:group_index] displayPicture]];
-    
+    if ([[[assembled_groups objectAt:group_index] PersonAt:person_index] displayAvail]) {
+        PersonImage.image = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayPic];
+    }else{
+        PersonImage.image = [UIImage imageNamed:[[assembled_groups objectAt:group_index] displayPicture]];
+    }
+
     NSLog(@"person_index: %i", person_index);
     NSLog(@"group_index: %i", person_index);
     

@@ -101,6 +101,7 @@
     else{
        editing = true; 
     }
+    [GroupCollection reloadData];
 }
 
 /*~~~~~~~~~~~~File Saving~~~~~~~~~~~~~~~*/
@@ -137,8 +138,12 @@
     
     [[group_cell GroupImage] setImage:[UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
     [[group_cell GroupName] setText:[[assembled_groups objectAt:indexPath.item] displayGroupName]];
-    
-    
+    if (editing) {
+        [[group_cell _delete_sign] setAlpha:1];
+    }
+    else{
+        [[group_cell _delete_sign]setAlpha:0];
+    }
 
     return group_cell;
 }

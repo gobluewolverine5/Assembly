@@ -19,21 +19,30 @@
                                     <constraint firstAttribute="width" constant="297" id="wwF-jW-DI8"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lL0-1n-QfC">
-                                    <size key="itemSize" width="80" height="96"/>
+                                    <size key="itemSize" width="89" height="103"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Group" id="lQj-xN-kWH" customClass="GroupCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="89" height="103"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="89" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="8Fw-jl-vrz"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="8Fw-jl-vrz">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="81" id="miu-rH-dZj"/>
+                                                        <constraint firstAttribute="height" constant="75" id="zWq-Si-h39"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="1368355926_Cancel__Red.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jnw-rg-vYe"/>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyL-YK-mki">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="68Q-u4-q6Y"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -42,17 +51,18 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="3Le-kO-axL"/>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="BbV-6a-h1W"/>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="D4m-GF-kpK"/>
-                                            <constraint firstItem="8Fw-jl-vrz" firstAttribute="top" secondItem="lQj-xN-kWH" secondAttribute="top" type="default" id="H1w-ZD-UQ4"/>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="bottom" secondItem="lQj-xN-kWH" secondAttribute="bottom" type="default" id="att-1y-qd8"/>
-                                            <constraint firstItem="MyL-YK-mki" firstAttribute="trailing" secondItem="lQj-xN-kWH" secondAttribute="trailing" type="default" id="dJW-BV-EeH"/>
-                                            <constraint firstAttribute="bottom" secondItem="8Fw-jl-vrz" secondAttribute="bottom" constant="20" type="default" id="nPd-QK-WqN"/>
+                                            <constraint firstItem="Jnw-rg-vYe" firstAttribute="top" secondItem="lQj-xN-kWH" secondAttribute="top" type="default" id="07L-GY-FG9"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="bottom" secondItem="lQj-xN-kWH" secondAttribute="bottom" type="default" id="11l-JH-XTc"/>
+                                            <constraint firstItem="Jnw-rg-vYe" firstAttribute="leading" secondItem="lQj-xN-kWH" secondAttribute="leading" type="default" id="X7f-lO-VIY"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="centerX" secondItem="lQj-xN-kWH" secondAttribute="centerX" type="default" id="hKG-RJ-2gj"/>
+                                            <constraint firstItem="MyL-YK-mki" firstAttribute="centerX" secondItem="8Fw-jl-vrz" secondAttribute="centerX" type="default" id="hhe-me-5DG"/>
+                                            <constraint firstAttribute="bottom" secondItem="8Fw-jl-vrz" secondAttribute="bottom" constant="20" type="default" id="q5q-qM-m5m"/>
                                         </constraints>
+                                        <size key="customSize" width="89" height="103"/>
                                         <connections>
                                             <outlet property="GroupImage" destination="8Fw-jl-vrz" id="ZMY-gq-QgD"/>
                                             <outlet property="GroupName" destination="MyL-YK-mki" id="EuV-Cg-nR3"/>
+                                            <outlet property="_delete_sign" destination="Jnw-rg-vYe" id="E3B-yQ-lWp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -163,14 +173,11 @@
                             <constraint firstItem="ex1-Eb-Xlo" firstAttribute="top" secondItem="Nb2-sY-emb" secondAttribute="top" constant="5" id="zhf-wL-rko"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Selected Group" id="UQo-jP-RSX">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="wsm-Ii-43C"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Selected Group" id="UQo-jP-RSX"/>
                     <connections>
                         <outlet property="GroupImage" destination="ex1-Eb-Xlo" id="hzx-wM-3li"/>
                         <outlet property="GroupMembers" destination="bVd-3H-wxZ" id="ser-fr-YOw"/>
                         <outlet property="NavigationBar" destination="UQo-jP-RSX" id="4bs-p3-dHq"/>
-                        <outlet property="editButton" destination="wsm-Ii-43C" id="JRR-fZ-A7R"/>
                         <outlet property="email" destination="5Xp-XW-kNZ" id="MY9-z5-ygh"/>
                         <outlet property="iMessage" destination="wR3-94-uz7" id="fhe-YO-4EP"/>
                         <segue destination="he9-rk-8Ve" kind="push" identifier="toPersonView" id="JFe-GR-Tv2"/>
@@ -480,8 +487,77 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1368355926_Cancel__Red.png" width="32" height="32"/>
         <image name="images.jpeg" width="170" height="171"/>
     </resources>
+    <classes>
+        <class className="Assemble" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Assemble.h"/>
+            <relationships>
+                <relationship kind="action" name="SaveButton:"/>
+                <relationship kind="action" name="readAddressBook:"/>
+                <relationship kind="outlet" name="ColorSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="GroupNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PeopleTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="GroupBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editGroups:"/>
+                <relationship kind="outlet" name="AssembleButton" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="EditGroups" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="GroupCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="GroupCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_delete_sign" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="del" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PersonView" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="FirstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="LastName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PersonImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="emailAddr" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="iMessageAddr" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="iMessageTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="ViewGroup" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewGroup.h"/>
+            <relationships>
+                <relationship kind="action" name="sendMail:"/>
+                <relationship kind="action" name="sendMsg:"/>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupMembers" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="email" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="iMessage" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

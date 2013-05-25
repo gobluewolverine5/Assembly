@@ -92,20 +92,27 @@
 
 -(IBAction)SaveButton:(id)sender
 {
-    //Saving the Group Name
-    [tempGroupInfo updateGroupName:GroupNameTextField.text];
-    
-    //Saving Color ID information
-    [tempGroupInfo updateColorID:[ColorSegment selectedSegmentIndex]];
-    
-    //Pusing Group object into assembled_groups array
-    [assembled_groups pushGroup:tempGroupInfo];
-    
-    if(![assembled_groups saveChanges]){
-        NSLog(@"Saving Failed!");
+    //No Group Name has been entered
+    if ([GroupNameTextField.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Warning!" message:@"Invaild Group Name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }else{
+        
+        //Saving the Group Name
+        [tempGroupInfo updateGroupName:GroupNameTextField.text];
+        
+        //Saving Color ID information
+        [tempGroupInfo updateColorID:[ColorSegment selectedSegmentIndex]];
+        
+        //Pusing Group object into assembled_groups array
+        [assembled_groups pushGroup:tempGroupInfo];
+        
+        if(![assembled_groups saveChanges]){
+            NSLog(@"Saving Failed!");
+        }
+        [[self navigationController]popViewControllerAnimated:YES];
     }
-    
-    [[self navigationController]popViewControllerAnimated:YES];
 }
 
 /*~~~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~*/
@@ -136,6 +143,12 @@
     //Storing Personal Info
     [tempPersonal inputFirstName:first];
     [tempPersonal inputLastName:last];
+    
+    if (ABPersonHasImageData(person)) {
+        [tempPersonal inputPicAvail:TRUE];
+        [tempPersonal inputContactPic:[UIImage imageWithData:(__bridge NSData*)ABPersonCopyImageData(person)]];
+        //[tempPersonal inputContactPic:(__bridge UIImage *)(picture)];
+    }
     
     //Storing Email address
 

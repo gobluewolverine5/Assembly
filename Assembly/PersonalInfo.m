@@ -17,6 +17,8 @@
     NSString *default_email;
     NSString *default_phone_num;
     NSString *default_imessage;
+    UIImage *contact_pic;
+    BOOL pic_avail;
 }
 
 -(id) init
@@ -27,6 +29,8 @@
         default_imessage = @"N/A";
         phone_num = [[NSMutableArray alloc]init];
         email = [[NSMutableArray alloc] init];
+        contact_pic = [[UIImage alloc] init];
+        pic_avail = FALSE;
     }
 	return self;
 }
@@ -42,6 +46,8 @@
     [encoder encodeObject:default_email forKey:@"default_email"];
     [encoder encodeObject:default_phone_num forKey:@"default_phone_num"];
     [encoder encodeObject:default_imessage forKey:@"default_imessage"];
+    [encoder encodeObject:contact_pic forKey:@"contact_pic"];
+    [encoder encodeBool:pic_avail forKey:@"pic_avail"];
 }
 
 -(id) initWithCoder:(NSCoder*) decoder
@@ -54,6 +60,8 @@
         default_email = [decoder decodeObjectForKey:@"default_email"];
         default_phone_num = [decoder decodeObjectForKey:@"default_phone_num"];
         default_imessage = [decoder decodeObjectForKey:@"default_imessage"];
+        contact_pic = [decoder decodeObjectForKey:@"contact_pic"];
+        pic_avail = [decoder decodeBoolForKey:@"pic_avail"];
     }
     return self;
 }
@@ -82,8 +90,14 @@
     [phone_num addObject:p_num];
     default_phone_num = p_num;
 }
-
-
+-(void) inputContactPic: (UIImage *) picture
+{
+    contact_pic = picture;
+}
+-(void) inputPicAvail:(BOOL)avail
+{
+    pic_avail = avail;
+}
 /*~~~~~~~~~~~~~~Update Attributes Functions~~~~~~~~~~~~~~*/
 
 -(void) updateDefaultEmail:(int) index
@@ -135,6 +149,16 @@
 -(NSString*) displayLast
 {
     return last_name;
+}
+
+-(UIImage*) displayPic
+{
+    return contact_pic;
+}
+
+-(BOOL) displayAvail
+{
+    return pic_avail;
 }
 
 -(int) emailCount

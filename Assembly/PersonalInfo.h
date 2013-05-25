@@ -15,6 +15,8 @@
 -(void) inputLastName:(NSString*) lastName;
 -(void) inputEmail:(NSString*) e_mail;
 -(void) inputPhoneNum:(NSString*) p_num;
+-(void) inputContactPic:(UIImage*) picture;
+-(void) inputPicAvail:(BOOL) avail;
 
 //Update Attributes Functions
 -(void) updateDefaultEmail:(int) index;
@@ -28,6 +30,8 @@
 -(NSString*) displayImessage;
 -(NSString*) displayFirst;
 -(NSString*) displayLast;
+-(UIImage*) displayPic;
+-(BOOL) displayAvail;
 -(int) emailCount;
 -(int) phoneCount;
 -(NSMutableArray*) emailArray;
