@@ -156,11 +156,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    //Fill the cells...
-    
+    /*Fill the cells...*/
+    //Assigning contact name to table cell
     cell.textLabel.text = [NSString stringWithFormat:@"%@",
                            [[[assembled_groups objectAt:index_selected]
                                                 PersonAt: indexPath.row] displayName]];
+    //Assigning contact image to table cell
+    [[cell imageView] setImage:[[[assembled_groups objectAt:index_selected] PersonAt:indexPath.row] displayPic]];
     
     //yourMutableArray is Array
     return cell;

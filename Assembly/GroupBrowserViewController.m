@@ -44,6 +44,8 @@
     [super viewDidLoad];
     NSLog(@"loaded the browser");
     
+    GroupCollection.backgroundColor = [UIColor clearColor];
+    
     [[self GroupCollection] setDelegate:self];
     [[self GroupCollection] setDataSource:self];
     
@@ -134,6 +136,7 @@
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cell_id = @"Group";
+    collectionView.backgroundColor = [UIColor clearColor];
     GroupCell *group_cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
     
     [[group_cell GroupImage] setImage:[UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
