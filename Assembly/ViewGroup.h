@@ -11,8 +11,10 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MFMessageComposeViewController.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface ViewGroup : UIViewController<UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
+@interface ViewGroup : UIViewController<ABPeoplePickerNavigationControllerDelegate, UITableViewDataSource, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic) AllGroups *assembled_groups;
 @property (nonatomic) int index_selected;
@@ -26,5 +28,6 @@
 
 - (IBAction)sendMsg:(id)sender;
 - (IBAction)sendMail:(id)sender;
+- (IBAction)readAddressBook:(id)sender;
 
 @end

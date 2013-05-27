@@ -15,6 +15,7 @@
 
 @implementation ViewGroup{
     int person_index;
+    bool modified;
 }
 
 //Shared Variables
@@ -52,11 +53,19 @@
     [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]]];
     
     person_index = 0;
+    modified = FALSE;
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [GroupMembers reloadData];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    if (modified) {
+        [assembled_groups saveChanges];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,6 +84,82 @@
     }
 }
 
+/*~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~~~*/
+-(IBAction)readAddressBook:(id)sender
+{
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+-(void) peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    NSLog(@"Done Picking Person");
+    PersonalInfo *tempPersonal = [[PersonalInfo alloc]init];
+    
+    NSString *first = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSString *last = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    ABMutableMultiValueRef tempmail = ABRecordCopyValue(person, kABPersonEmailProperty);
+    ABMutableMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    
+    //Storing Personal Info
+    [tempPersonal inputFirstName:first];
+    [tempPersonal inputLastName:last];
+    
+    if (ABPersonHasImageData(person)) {
+        [tempPersonal inputPicAvail:TRUE];
+        [tempPersonal inputContactPic:[UIImage imageWithData:(__bridge NSData*)ABPersonCopyImageData(person)]];
+        //[tempPersonal inputContactPic:(__bridge UIImage *)(picture)];
+    }
+    
+    //Storing Email address
+    
+    for (int i = 0; i < ABMultiValueGetCount(tempmail); i++) {
+        CFStringRef emailRef = ABMultiValueCopyValueAtIndex(tempmail, i);
+        [tempPersonal inputEmail:(__bridge NSString*) emailRef];
+        CFRelease(emailRef);
+    }
+    
+    //Storing Phone Number
+    for (int i = 0; i < ABMultiValueGetCount(phone); i++) {
+        CFStringRef phoneRef = ABMultiValueCopyValueAtIndex(phone, i);
+        [tempPersonal inputPhoneNum:(__bridge NSString*) phoneRef];
+        CFRelease(phoneRef);
+    }
+    
+    //Initializing default email, phone and iMessage addresses
+    if (ABMultiValueGetCount(tempmail)) {
+        [tempPersonal updateDefaultEmail:0];
+    }
+    if (ABMultiValueGetCount(phone) > 0) {
+        [tempPersonal updateDefaultPhone:0]; //Sets default phone # to first phone #
+        [tempPersonal updatedefaultImessage:NO at:0]; //Sets default iMessage to first Phone #
+    }
+    
+    //Appending Personal Info to Group Info
+    [[assembled_groups objectAt:index_selected ] pushInfo:tempPersonal];
+    
+    //*index = [assembled_groups count]; //saving index of GroupInfo in Groups Array
+    //[assembled_groups pushGroup:tempGroupInfo];
+    
+    [GroupMembers reloadData];//Updating Table Contents
+    NSLog(@"got to this point");
+    modified = TRUE;
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    return NO;
+}
+
+-(BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    return NO;
+}
 
 /*~~~~~~~~~~~~Group Message Sending~~~~~~~~~~~~~*/
 
@@ -166,6 +251,36 @@
     
     //yourMutableArray is Array
     return cell;
+}
+
+//Editing Table
+-(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSUInteger row = (NSUInteger)[indexPath row];
+    NSUInteger count = [[assembled_groups objectAt:index_selected] count];
+    
+    if (row < count) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else{
+        return UITableViewCellEditingStyleNone;
+    }
+    
+}
+
+-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger row = (NSUInteger)[indexPath row];
+    NSUInteger count = [[assembled_groups objectAt:index_selected] count];
+    
+    if (row < count) {
+        [[assembled_groups objectAt:index_selected] deleteInfo:row];
+        modified = TRUE;
+    }
+}
+
+-(void) tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [GroupMembers reloadData];
 }
 
 @end

@@ -53,9 +53,6 @@
     
     editing = false;
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [self.GroupCollection addGestureRecognizer:longPress];
-    
     [GroupCollection reloadData];
     
 }
@@ -170,6 +167,9 @@
         [assembled_groups saveChanges];
         [GroupCollection reloadData];
         NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
+        if ([assembled_groups count] == 0) {
+            editing = false;
+        }
     }
     else{
         [self performSegueWithIdentifier:@"toViewGroup" sender:indexPath];

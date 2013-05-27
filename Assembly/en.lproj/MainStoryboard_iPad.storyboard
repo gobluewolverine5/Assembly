@@ -265,7 +265,13 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Selected Group" id="1Fa-U8-dx7"/>
+                    <navigationItem key="navigationItem" title="Selected Group" id="1Fa-U8-dx7">
+                        <barButtonItem key="rightBarButtonItem" title="Add Person" id="cEp-cr-qvL">
+                            <connections>
+                                <action selector="readAddressBook:" destination="Mmv-sb-VsX" id="DqL-Vs-YRe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="GroupImage" destination="b8l-Ag-Pw5" id="rU5-FC-no9"/>
                         <outlet property="GroupMembers" destination="f2z-Nk-uvB" id="ubg-VK-aPu"/>
@@ -405,6 +411,75 @@
         <image name="1368355926_Cancel__Red.png" width="32" height="32"/>
         <image name="images.jpeg" width="170" height="171"/>
     </resources>
+    <classes>
+        <class className="Assemble" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Assemble.h"/>
+            <relationships>
+                <relationship kind="action" name="SaveButton:"/>
+                <relationship kind="action" name="readAddressBook:"/>
+                <relationship kind="outlet" name="ColorSegment" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="GroupNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="PeopleTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="GroupBrowserViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupBrowserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editGroups:"/>
+                <relationship kind="outlet" name="AssembleButton" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="EditGroups" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="GroupCollection" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+            </relationships>
+        </class>
+        <class className="GroupCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="_delete_sign" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="del" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PersonView" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="FirstName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="LastName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="PersonImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="emailAddr" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="iMessageAddr" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="iMessageTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewGroup" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewGroup.h"/>
+            <relationships>
+                <relationship kind="action" name="readAddressBook:"/>
+                <relationship kind="action" name="sendMail:"/>
+                <relationship kind="action" name="sendMsg:"/>
+                <relationship kind="outlet" name="GroupImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="GroupMembers" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="NavigationBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="editButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="email" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="iMessage" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
