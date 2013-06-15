@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppStoreFileSize</key>
+	<integer>3877192</integer>
+	<key>AppStoreFileSizeValid</key>
+	<true/>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/Assembly.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>HelionStudioUnlimited.Assembly</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0</string>
+		<key>CFBundleVersion</key>
+		<string>1.0</string>
+		<key>IconPaths</key>
+		<array>
+			<string>Applications/Assembly.app/icon(57).png</string>
+			<string>Applications/Assembly.app/icon(114).png</string>
+			<string>Applications/Assembly.app/icon(72).png</string>
+			<string>Applications/Assembly.app/icon(144).png</string>
+		</array>
+		<key>SigningIdentity</key>
+		<string>iPhone Developer: Evan Hsu (R5Y7D99KT8)</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2013-05-27T04:40:53Z</date>
+	<key>Name</key>
+	<string>Assembly</string>
+	<key>SchemeName</key>
+	<string>Assembly</string>
+</dict>
+</plist>

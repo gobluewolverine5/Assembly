@@ -8,14 +8,15 @@
 
 #import "ViewGroup.h"
 #import "PersonView.h"
+#import "BackgroundColor.h"
 
 @interface ViewGroup ()
 
 @end
 
 @implementation ViewGroup{
-    int person_index;
-    bool modified;
+    int     person_index;
+    bool    modified;
 }
 
 //Shared Variables
@@ -29,6 +30,7 @@
 @synthesize iMessage;
 @synthesize email;
 @synthesize editButton;
+@synthesize BackgroundIMG;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,18 +44,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    person_index                    = 0;
+    modified                        = FALSE;
+    BackgroundColor *bg_chooser     = [[BackgroundColor alloc] init];
+    BackgroundIMG.image             = [bg_chooser BGchooser:[[assembled_groups objectAt:index_selected] displayColorID]];
 
     //Initializing Members Table
-    GroupMembers.delegate = self;
-    GroupMembers.dataSource = self;
+    GroupMembers.delegate           = self;
+    GroupMembers.dataSource         = self;
     [GroupMembers reloadData];
 
-    NavigationBar.title = [[assembled_groups objectAt:index_selected] displayGroupName];
+    NavigationBar.title             = [[assembled_groups objectAt:index_selected] displayGroupName];
     
     [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]]];
-    
-    person_index = 0;
-    modified = FALSE;
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -77,18 +80,18 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"toPersonView"]) {
-        PersonView *tempPersonViewVC = (PersonView*) segue.destinationViewController;
-        tempPersonViewVC.group_index = index_selected;
-        tempPersonViewVC.person_index = person_index;
-        tempPersonViewVC.assembled_groups = assembled_groups;
+        PersonView *tempPersonViewVC        = (PersonView*) segue.destinationViewController;
+        tempPersonViewVC.group_index        = index_selected;
+        tempPersonViewVC.person_index       = person_index;
+        tempPersonViewVC.assembled_groups   = assembled_groups;
     }
 }
 
 /*~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~~~*/
 -(IBAction)readAddressBook:(id)sender
 {
-    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
+    ABPeoplePickerNavigationController *picker  = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate                 = self;
     
     [self presentViewController:picker animated:YES completion:NULL];
 }
@@ -100,26 +103,27 @@
 
 -(BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    NSLog(@"Done Picking Person");
     PersonalInfo *tempPersonal = [[PersonalInfo alloc]init];
     
-    NSString *first = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *last = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    NSString *first                 = (__bridge NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+    NSString *last                  = (__bridge NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
     ABMutableMultiValueRef tempmail = ABRecordCopyValue(person, kABPersonEmailProperty);
-    ABMutableMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    ABMutableMultiValueRef phone    = ABRecordCopyValue(person, kABPersonPhoneProperty);
     
     //Storing Personal Info
-    [tempPersonal inputFirstName:first];
-    [tempPersonal inputLastName:last];
+    [tempPersonal inputFirstName    :first];
+    [tempPersonal inputLastName     :last];
+    CFRelease((__bridge CFTypeRef)(first));
+    CFRelease((__bridge CFTypeRef)(last));
     
     if (ABPersonHasImageData(person)) {
         [tempPersonal inputPicAvail:TRUE];
-        [tempPersonal inputContactPic:[UIImage imageWithData:(__bridge NSData*)ABPersonCopyImageData(person)]];
-        //[tempPersonal inputContactPic:(__bridge UIImage *)(picture)];
+        NSData *tempData = (__bridge NSData*)ABPersonCopyImageData(person);
+        [tempPersonal inputContactPic:[UIImage imageWithData:tempData]];
+        CFRelease((__bridge CFTypeRef)(tempData));
     }
     
     //Storing Email address
-    
     for (int i = 0; i < ABMultiValueGetCount(tempmail); i++) {
         CFStringRef emailRef = ABMultiValueCopyValueAtIndex(tempmail, i);
         [tempPersonal inputEmail:(__bridge NSString*) emailRef];
@@ -135,22 +139,20 @@
     
     //Initializing default email, phone and iMessage addresses
     if (ABMultiValueGetCount(tempmail)) {
-        [tempPersonal updateDefaultEmail:0];
+        [tempPersonal updateDefaultEmail    :0];
     }
     if (ABMultiValueGetCount(phone) > 0) {
-        [tempPersonal updateDefaultPhone:0]; //Sets default phone # to first phone #
-        [tempPersonal updatedefaultImessage:NO at:0]; //Sets default iMessage to first Phone #
+        [tempPersonal updateDefaultPhone    :0];                            //Sets default phone # to first phone #
+        [tempPersonal updatedefaultImessage :NO at:0];                      //Sets default iMessage to first Phone #
     }
     
-    //Appending Personal Info to Group Info
-    [[assembled_groups objectAt:index_selected ] pushInfo:tempPersonal];
     
-    //*index = [assembled_groups count]; //saving index of GroupInfo in Groups Array
-    //[assembled_groups pushGroup:tempGroupInfo];
+    [[assembled_groups objectAt:index_selected ] pushInfo:tempPersonal];    //Appending Personal Info to Group Info
     
-    [GroupMembers reloadData];//Updating Table Contents
-    NSLog(@"got to this point");
+    [GroupMembers reloadData];                                              //Updating Table Contents
     modified = TRUE;
+    CFRelease(tempmail);
+    CFRelease(phone);
     [self dismissViewControllerAnimated:YES completion:NULL];
     
     return NO;
@@ -178,9 +180,8 @@
     
     MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
     if ([MFMessageComposeViewController canSendText]) {
-        //controller.body = @"This is a test sent by Assembly";
-        controller.recipients = recipients;
-        controller.messageComposeDelegate = self;
+        controller.recipients               = recipients;
+        controller.messageComposeDelegate   = self;
         
         [self presentViewController:controller animated:YES completion:nil];
     }
@@ -201,11 +202,10 @@
     }
     
     if ([MFMailComposeViewController canSendMail]) {
-        
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-        mailViewController.mailComposeDelegate = self;
-        [mailViewController setSubject:@""];
-        [mailViewController setToRecipients:people];
+        mailViewController.mailComposeDelegate          = self;
+        [mailViewController setSubject      :@""];
+        [mailViewController setToRecipients :people];
         
         [self presentViewController:mailViewController animated:YES completion:NULL];
     }
@@ -234,43 +234,36 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *CellIdentifier = @"Cell";
-    //here you check for PreCreated cell.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier     = @"Cell";
+    UITableViewCell *cell               = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    /*Fill the cells...*/
     //Assigning contact name to table cell
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",
-                           [[[assembled_groups objectAt:index_selected]
-                                                PersonAt: indexPath.row] displayName]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[[assembled_groups objectAt:index_selected] PersonAt: indexPath.row] displayName]];
     //Assigning contact image to table cell
     [[cell imageView] setImage:[[[assembled_groups objectAt:index_selected] PersonAt:indexPath.row] displayPic]];
-    
-    //yourMutableArray is Array
+
     return cell;
 }
 
 //Editing Table
 -(UITableViewCellEditingStyle) tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSUInteger row = (NSUInteger)[indexPath row];
-    NSUInteger count = [[assembled_groups objectAt:index_selected] count];
+    NSUInteger row      = (NSUInteger)[indexPath row];
+    NSUInteger count    = [[assembled_groups objectAt:index_selected] count];
     
-    if (row < count) {
+    if (row < count)
         return UITableViewCellEditingStyleDelete;
-    }
-    else{
+    else
         return UITableViewCellEditingStyleNone;
-    }
     
 }
 
 -(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger row = (NSUInteger)[indexPath row];
-    NSUInteger count = [[assembled_groups objectAt:index_selected] count];
+    NSUInteger row      = (NSUInteger)[indexPath row];
+    NSUInteger count    = [[assembled_groups objectAt:index_selected] count];
     
     if (row < count) {
         [[assembled_groups objectAt:index_selected] deleteInfo:row];

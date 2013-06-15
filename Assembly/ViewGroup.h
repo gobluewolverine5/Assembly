@@ -17,17 +17,18 @@
 @interface ViewGroup : UIViewController<ABPeoplePickerNavigationControllerDelegate, UITableViewDataSource, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic) AllGroups *assembled_groups;
-@property (nonatomic) int index_selected;
+@property (nonatomic) int       index_selected;
 
-@property (strong, nonatomic) IBOutlet UITableView *GroupMembers;
+@property (strong, nonatomic) IBOutlet UITableView      *GroupMembers;
 @property (strong, nonatomic) IBOutlet UINavigationItem *NavigationBar;
-@property (strong, nonatomic) IBOutlet UIImageView *GroupImage;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *iMessage;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *email;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (strong, nonatomic) IBOutlet UIImageView      *GroupImage;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem  *iMessage;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem  *email;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem  *editButton;
+@property (strong, nonatomic) IBOutlet UIImageView      *BackgroundIMG;
 
-- (IBAction)sendMsg:(id)sender;
-- (IBAction)sendMail:(id)sender;
-- (IBAction)readAddressBook:(id)sender;
+- (IBAction) sendMsg        :(id)sender;
+- (IBAction) sendMail       :(id)sender;
+- (IBAction) readAddressBook:(id)sender;
 
 @end

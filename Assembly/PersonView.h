@@ -12,16 +12,17 @@
 @interface PersonView : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) AllGroups *assembled_groups;
-@property (nonatomic) int group_index;
-@property (nonatomic) int person_index;
+@property (nonatomic) int       group_index;
+@property (nonatomic) int       person_index;
 
-@property (strong, nonatomic) IBOutlet UIImageView *PersonImage;
-@property (strong, nonatomic) IBOutlet UILabel *FirstName;
-@property (strong, nonatomic) IBOutlet UILabel *LastName;
-@property (strong, nonatomic) IBOutlet UILabel *iMessageAddr;
-@property (strong, nonatomic) IBOutlet UITableView *iMessageTable;
-@property (strong, nonatomic) IBOutlet UILabel *emailAddr;
-@property (strong, nonatomic) IBOutlet UITableView *emailTable;
+@property (strong, nonatomic) IBOutlet UIImageView  *PersonImage;
+@property (strong, nonatomic) IBOutlet UILabel      *FirstName;
+@property (strong, nonatomic) IBOutlet UILabel      *LastName;
+@property (strong, nonatomic) IBOutlet UILabel      *iMessageAddr;
+@property (strong, nonatomic) IBOutlet UITableView  *iMessageTable;
+@property (strong, nonatomic) IBOutlet UILabel      *emailAddr;
+@property (strong, nonatomic) IBOutlet UITableView  *emailTable;
+@property (strong, nonatomic) IBOutlet UIImageView  *BackgroundIMG;
 
 
 @end

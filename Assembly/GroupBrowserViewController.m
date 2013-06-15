@@ -20,10 +20,10 @@
 @end
 
 @implementation GroupBrowserViewController{
-    NSString *firstName;
-    AllGroups *assembled_groups;
-    ViewGroup *tempViewGroup;
-    BOOL editing;
+    NSString    *firstName;
+    AllGroups   *assembled_groups;
+    ViewGroup   *tempViewGroup;
+    BOOL        editing;
 }
 
 @synthesize GroupCollection;
@@ -44,29 +44,22 @@
     [super viewDidLoad];
     NSLog(@"loaded the browser");
     
+    NavigationBar.title             = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
+    editing                         = false;
     GroupCollection.backgroundColor = [UIColor clearColor];
     
-    [[self GroupCollection] setDelegate:self];
-    [[self GroupCollection] setDataSource:self];
-    
-    NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
-    
-    editing = false;
-    
+    [[self GroupCollection] setDelegate:    self];
+    [[self GroupCollection] setDataSource:  self];
     [GroupCollection reloadData];
     
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    //NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
+    assembled_groups    = [[AllGroups alloc] init];
+    NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
     
-    assembled_groups = [[AllGroups alloc] init];
-    //NSLog(@"INSIDE ASSEMBLED GROUPS: %@", [[assembled_groups objectAt:0] displayGroupName]);
-   
     [GroupCollection reloadData];//refreshing collection view
-    
-     NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,44 +71,40 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"BrowserAndAssemble"]) {
-        Assemble *assembleVC = (Assemble*) segue.destinationViewController;
-        assembleVC.assembled_groups = assembled_groups;
+        Assemble *assembleVC            = (Assemble*)    segue.destinationViewController;
+        assembleVC.assembled_groups     = assembled_groups;
     }
     else if([segue.identifier isEqualToString:@"toViewGroup"]){
-        NSLog(@"preparing for segue to 'toViewGroup'");
-        NSIndexPath *tempIndex = (NSIndexPath*)sender;
-        ViewGroup *view_groupVC = (ViewGroup*) segue.destinationViewController;
+        NSIndexPath *tempIndex          = (NSIndexPath*) sender;
+        ViewGroup *view_groupVC         = (ViewGroup*)   segue.destinationViewController;
         
         //Passing data to next view controller
-        view_groupVC.assembled_groups = assembled_groups;
-        view_groupVC.index_selected = [tempIndex row];
+        view_groupVC.assembled_groups   = assembled_groups;
+        view_groupVC.index_selected     = [tempIndex row];
     }
 }
 
 -(IBAction)editGroups:(id)sender
 {
-    if (editing){
-       editing = false; 
-    }
-    else{
-       editing = true; 
-    }
+    if (editing)
+       editing = false;
+    else
+       editing = true;
+    
     [GroupCollection reloadData];
 }
 
 /*~~~~~~~~~~~~File Saving~~~~~~~~~~~~~~~*/
 - (void)saveCustomObject:(AllGroups *)obj {
-    NSLog(@"saved custom object");
-    NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:obj];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject     = [NSKeyedArchiver  archivedDataWithRootObject:obj];
+    NSUserDefaults *defaults    = [NSUserDefaults   standardUserDefaults];
     [defaults setObject:myEncodedObject forKey:@"myEncodedObjectKey"];
 }
 
 - (AllGroups *)loadCustomObjectWithKey:(NSString *)key {
-    NSLog(@"loaded custom object");
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *myEncodedObject = [defaults objectForKey:key];
-    AllGroups *obj = (AllGroups *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
+    NSUserDefaults *defaults    = [NSUserDefaults standardUserDefaults];
+    NSData *myEncodedObject     = [defaults objectForKey:key];
+    AllGroups *obj              = (AllGroups *)[NSKeyedUnarchiver unarchiveObjectWithData: myEncodedObject];
     return obj;
 }
 
@@ -132,18 +121,17 @@
 
 -(UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cell_id = @"Group";
-    collectionView.backgroundColor = [UIColor clearColor];
-    GroupCell *group_cell = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
+    static NSString *cell_id        = @"Group";
+    collectionView.backgroundColor  = [UIColor clearColor];
+    GroupCell *group_cell           = [collectionView dequeueReusableCellWithReuseIdentifier:cell_id forIndexPath:indexPath];
     
-    [[group_cell GroupImage] setImage:[UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
-    [[group_cell GroupName] setText:[[assembled_groups objectAt:indexPath.item] displayGroupName]];
-    if (editing) {
-        [[group_cell _delete_sign] setAlpha:1];
-    }
-    else{
-        [[group_cell _delete_sign]setAlpha:0];
-    }
+    [[group_cell GroupImage]    setImage:   [UIImage imageNamed:[[assembled_groups objectAt:indexPath.item] displayPicture]]];
+    [[group_cell GroupName]     setText:    [[assembled_groups objectAt:indexPath.item] displayGroupName]];
+    
+    if (editing)
+        [[group_cell _delete_sign]  setAlpha:1];
+    else
+        [[group_cell _delete_sign]  setAlpha:0];
 
     return group_cell;
 }
@@ -163,18 +151,15 @@
     NSLog(@"collection view was selected! %i", [indexPath row]);
     if (editing) {
 
-        [assembled_groups removeGroup:indexPath.row];
-        [assembled_groups saveChanges];
-        [GroupCollection reloadData];
+        [assembled_groups   removeGroup:indexPath.row];
+        [assembled_groups   saveChanges];
+        [GroupCollection    reloadData];
         NavigationBar.title = [NSString stringWithFormat:@"%i Group(s)", [assembled_groups count]];
-        if ([assembled_groups count] == 0) {
-            editing = false;
-        }
+        if ([assembled_groups count] == 0) editing = false;
     }
     else{
         [self performSegueWithIdentifier:@"toViewGroup" sender:indexPath];
     }
-    
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PersonView.h"
+#import "BackgroundColor.h"
 
 @interface PersonView ()
 
@@ -27,6 +28,7 @@
 @synthesize iMessageTable;
 @synthesize emailAddr;
 @synthesize emailTable;
+@synthesize BackgroundIMG;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,43 +42,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    iMessageTable.delegate = self;
-    iMessageTable.dataSource = self;
+    BackgroundColor *bg_chooser                 = [[BackgroundColor alloc] init];
+    BackgroundIMG.image                         = [bg_chooser BGchooser:[[assembled_groups objectAt:group_index] displayColorID]];
     
+    iMessageTable.delegate                      = self;
+    iMessageTable.dataSource                    = self;
     [iMessageTable reloadData];
     
-    emailTable.delegate = self;
-    emailTable.dataSource = self;
+    emailTable.delegate                         = self;
+    emailTable.dataSource                       = self;
     [emailTable reloadData];
-    
-    iMessageAddr.numberOfLines = 1;
-    iMessageAddr.adjustsFontSizeToFitWidth = YES;
+
+    iMessageAddr.numberOfLines                  = 1;
+    iMessageAddr.adjustsFontSizeToFitWidth      = YES;
     iMessageAddr.adjustsLetterSpacingToFitWidth = YES;
-    [iMessageAddr setText:[[[assembled_groups objectAt:group_index] PersonAt:person_index] displayImessage]];
+    emailAddr.numberOfLines                     = 1;
+    emailAddr.adjustsFontSizeToFitWidth         = YES;
+    emailAddr.adjustsLetterSpacingToFitWidth    = YES;
+    FirstName.numberOfLines                     = 1;
+    FirstName.adjustsFontSizeToFitWidth         = YES;
+    FirstName.adjustsLetterSpacingToFitWidth    = YES;
+    LastName.numberOfLines                      = 1;
+    LastName.adjustsFontSizeToFitWidth          = YES;
+    LastName.adjustsLetterSpacingToFitWidth     = YES;
     
-    emailAddr.numberOfLines = 1;
-    emailAddr.adjustsFontSizeToFitWidth = YES;
-    emailAddr.adjustsLetterSpacingToFitWidth = YES;
-    [emailAddr setText:[[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmail]];
-    
-    FirstName.numberOfLines = 1;
-    FirstName.adjustsFontSizeToFitWidth = YES;
-    FirstName.adjustsLetterSpacingToFitWidth = YES;
-    FirstName.text = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayFirst];
-    
-    LastName.numberOfLines = 1;
-    LastName.adjustsFontSizeToFitWidth = YES;
-    LastName.adjustsLetterSpacingToFitWidth = YES;
-    LastName.text = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayLast];
+    [iMessageAddr setText:  [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayImessage]];
+    [emailAddr setText:     [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmail]];
+    [FirstName setText:     [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayFirst]];
+    [LastName setText:      [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayLast]];
     
     if ([[[assembled_groups objectAt:group_index] PersonAt:person_index] displayAvail]) {
         PersonImage.image = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayPic];
     }else{
         PersonImage.image = [UIImage imageNamed:[[assembled_groups objectAt:group_index] displayPicture]];
     }
-
-    NSLog(@"person_index: %i", person_index);
-    NSLog(@"group_index: %i", person_index);
     
 }
 
@@ -100,22 +99,22 @@
         int myIndex = indexPath.row;
         if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
             
-            //updating default iMessage address
             [[[assembled_groups objectAt:group_index]
-                                PersonAt:person_index] updatedefaultImessage:NO at:myIndex];
+                                PersonAt:person_index]
+                                updatedefaultImessage   :NO
+                                at                      :myIndex];                              //updating default iMessage address
         }
         else{
-            //Converting index for email array access
-            myIndex = indexPath.row - [[[assembled_groups objectAt:group_index]
-                                        PersonAt:person_index] phoneCount];
+            myIndex = indexPath.row - [[[assembled_groups objectAt  :group_index]
+                                                        PersonAt    :person_index] phoneCount]; //Converting index for email array access
             
             //updating default iMessage address
             [[[assembled_groups objectAt:group_index]
                                 PersonAt:person_index] updatedefaultImessage:YES at:myIndex];
         }
         //updating iMessage address display
-        [iMessageAddr setText:[[[assembled_groups objectAt:group_index]
-                                PersonAt:person_index] displayImessage]];
+        [iMessageAddr setText:[[[assembled_groups objectAt  :group_index]
+                                                    PersonAt:person_index] displayImessage]];
         
     }
     else if(tableView == emailTable){
@@ -133,14 +132,13 @@
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
     if (table == iMessageTable) {
-        return [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount] +
-        [[[assembled_groups objectAt:group_index] PersonAt:person_index] emailCount];
+        return [[[assembled_groups  objectAt:group_index] PersonAt:person_index] phoneCount] +
+                [[[assembled_groups objectAt:group_index] PersonAt:person_index] emailCount];
     }
     else if (table == emailTable){
-        return [[[assembled_groups objectAt:group_index] PersonAt:person_index] emailCount];
+        return [[[assembled_groups  objectAt:group_index] PersonAt:person_index] emailCount];
     }
     else{
-        NSLog(@"returned size 0");
         return 0;
     }
 }
@@ -148,15 +146,14 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CellIdentifier = @"Cell";
-    //here you check for PreCreated cell.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.numberOfLines = 1;
-    cell.textLabel.adjustsLetterSpacingToFitWidth = YES;
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.numberOfLines                    = 1;
+    cell.textLabel.adjustsLetterSpacingToFitWidth   = YES;
+    cell.textLabel.adjustsFontSizeToFitWidth        = YES;
     
     if (tableView == iMessageTable) {
         
@@ -164,22 +161,20 @@
         if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
             int myIndex = indexPath.row;
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                      PersonAt:person_index] phoneArray]
-                                                                    objectAtIndex:myIndex]];
+                                                                                        PersonAt:person_index] phoneArray]
+                                                                                        objectAtIndex:myIndex]];
         }
         else{
             int myIndex = indexPath.row - [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                      PersonAt:person_index] emailArray]
-                                                                    objectAtIndex:myIndex]];
+                                                                                        PersonAt:person_index] emailArray]
+                                                                                        objectAtIndex:myIndex]];
         }
     }
     else if (tableView == emailTable){
-        
-        //Fill the cells...
         cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                  PersonAt:person_index] emailArray]
-                                                                objectAtIndex:indexPath.row]];
+                                                                                    PersonAt:person_index] emailArray]
+                                                                                    objectAtIndex:indexPath.row]];
     }
     return cell;
 }
