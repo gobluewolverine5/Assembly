@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E9AAF0F7-20C0-46B6-AD80-FBE67A18198E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Assembly</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D2F57BE0-1351-41DF-B47E-92FE23D5BDDF</key>
+		<string>https://github.com/gobluewolverine5/Assembly.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Assembly.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D2F57BE0-1351-41DF-B47E-92FE23D5BDDF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gobluewolverine5/Assembly.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D2F57BE0-1351-41DF-B47E-92FE23D5BDDF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D2F57BE0-1351-41DF-B47E-92FE23D5BDDF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Assembly</string>
+		</dict>
+	</array>
+</dict>
+</plist>

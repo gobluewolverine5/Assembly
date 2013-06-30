@@ -21,26 +21,26 @@
     switch (selection) {
             //Blue Metal
         case 0:
-            return [UIImage imageNamed:@"Background(4).png"];
+            return [UIImage imageNamed:@"(WHITE) Blue.png"];
             break;
             //Green Metal
         case 1:
-            return [UIImage imageNamed:@"Background(6).png"];
+            return [UIImage imageNamed:@"(WHITE) Green.png"];
             break;
             //Red Metal
         case 2:
-            return [UIImage imageNamed:@"Background(5).png"];
+            return [UIImage imageNamed:@"(WHITE) Red.png"];
             break;
             //Yellow Metal
         case 3:
-            return [UIImage imageNamed:@"Background(7).png"];
+            return [UIImage imageNamed:@"(WHITE) Yellow.png"];
             break;
             //Basic Metal
         case 4:
-            return [UIImage imageNamed:@"Background(3).png"];
+            return [UIImage imageNamed:@"(WHITE) Background .png"];
             break;
         default:
-            return [UIImage imageNamed:@"Background(3).png"];
+            return [UIImage imageNamed:@"(WHITE) Background .png"];
             break;
     }
 }

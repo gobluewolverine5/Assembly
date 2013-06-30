@@ -58,7 +58,6 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"This is also the correct logic");
     if ([segue.identifier isEqualToString:@"BrowserAndAssemble"]) {
         NSLog(@"This is RIGHT!");
     }
@@ -97,9 +96,9 @@
                               otherButtonTitles :nil];
         [alert show];
     }else{
-        [tempGroupInfo      updateGroupName     :GroupNameTextField.text]; //Saving the Group Name
-        [tempGroupInfo      updateColorID       :[ColorSegment selectedSegmentIndex]]; //Saving Color ID information
-        [assembled_groups   pushGroup           :tempGroupInfo]; //Pusing Group object into assembled_groups array
+        [tempGroupInfo      updateGroupName     :GroupNameTextField.text];              //Saving the Group Name
+        [tempGroupInfo      updateColorID       :[ColorSegment selectedSegmentIndex]];  //Saving Color ID information
+        [assembled_groups   pushGroup           :tempGroupInfo];                        //Pusing Group object into assembled_groups array
         
         if(![assembled_groups saveChanges]) NSLog(@"Saving Failed!");
         [[self navigationController] popViewControllerAnimated:YES];
@@ -164,9 +163,10 @@
     }
     if (ABMultiValueGetCount(phone) > 0) {
         [tempPersonal updateDefaultPhone    :0];        //Sets default phone # to first phone #
-        [tempPersonal updatedefaultImessage :NO at:0];  //Sets default iMessage to first Phone #
     }
-    
+    if (ABMultiValueGetCount(email) || ABMultiValueGetCount(phone)) {
+        [tempPersonal updatedefaultImessage :0];        //Sets default iMessage to first Phone #
+    }
     
     [tempGroupInfo pushInfo:tempPersonal];              //Appending Personal Info to Group Info
     [PeopleTable reloadData];                           //Updating Table Contents
@@ -216,7 +216,7 @@
                 initWithStyle   :UITableViewCellStyleDefault
                 reuseIdentifier :CellIdentifier];
     }
-    
+    cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",[[tempGroupInfo PersonAt: indexPath.row] displayName]];
     [[cell imageView] setImage:[[tempGroupInfo PersonAt: indexPath.row]displayPic]];
     

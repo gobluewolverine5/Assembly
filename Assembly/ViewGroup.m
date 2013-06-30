@@ -143,9 +143,10 @@
     }
     if (ABMultiValueGetCount(phone) > 0) {
         [tempPersonal updateDefaultPhone    :0];                            //Sets default phone # to first phone #
-        [tempPersonal updatedefaultImessage :NO at:0];                      //Sets default iMessage to first Phone #
     }
-    
+    if (ABMultiValueGetCount(tempmail) || ABMultiValueGetCount(phone)) {
+        [tempPersonal updatedefaultImessage :0];                            //Sets default iMessage to first Phone #
+    }
     
     [[assembled_groups objectAt:index_selected ] pushInfo:tempPersonal];    //Appending Personal Info to Group Info
     
@@ -168,6 +169,19 @@
 -(void) messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    switch (result) {
+        case MessageComposeResultCancelled:
+            NSLog(@"Message Cancelled");
+            break;
+        case MessageComposeResultFailed:
+            NSLog(@"Message Failed");
+            break;
+        case MessageComposeResultSent:
+            NSLog(@"Message Sent");
+            break;
+        default:
+            break;
+    }
 }
 
 -(IBAction)sendMsg:(id)sender
@@ -182,6 +196,7 @@
     if ([MFMessageComposeViewController canSendText]) {
         controller.recipients               = recipients;
         controller.messageComposeDelegate   = self;
+        controller.body                     = @"Sent by Assembly for iPhone and iPad";
         
         [self presentViewController:controller animated:YES completion:nil];
     }
@@ -190,7 +205,6 @@
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult: (MFMailComposeResult)result error:(NSError*)error {
     
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 -(IBAction)sendMail:(id)sender
@@ -206,6 +220,8 @@
         mailViewController.mailComposeDelegate          = self;
         [mailViewController setSubject      :@""];
         [mailViewController setToRecipients :people];
+        [mailViewController setMessageBody:@"Sent by Assembly for iPhone and iPad" isHTML:NO];
+        
         
         [self presentViewController:mailViewController animated:YES completion:NULL];
     }
@@ -239,9 +255,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
+    cell.textLabel.backgroundColor = [UIColor clearColor];
     //Assigning contact name to table cell
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[[assembled_groups objectAt:index_selected] PersonAt: indexPath.row] displayName]];
+    cell.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
     //Assigning contact image to table cell
     [[cell imageView] setImage:[[[assembled_groups objectAt:index_selected] PersonAt:indexPath.row] displayPic]];
 

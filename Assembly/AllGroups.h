@@ -17,25 +17,25 @@
     NSMutableArray *Groups;
 }
 
-- (NSArray *)allItems;
-- (NSString *)itemArchivePath;
-- (BOOL)saveChanges;
+- (NSArray*)    allItems;
+- (NSString*)   itemArchivePath;
+- (BOOL)        saveChanges;
 
 //Origin Functions
 -(NSUInteger) count;
 
--(void) pushGroup:(GroupInfo*) newGroup;
+-(void) pushGroup:  (GroupInfo*) newGroup;
 -(void) removeGroup:(NSUInteger) at;
 
--(void) updateGroupName:(NSString*)newName at:(NSUInteger) index;
--(void) updateColorID:(int)color at:(NSUInteger) index;
+-(void) updateGroupName:(NSString*) newName  at:(NSUInteger) index;
+-(void) updateColorID:  (int) color          at:(NSUInteger) index;
 
--(GroupInfo*) objectAt:(NSUInteger) index;
+-(GroupInfo*) objectAt: (NSUInteger) index;
 
 
 //Encoding
 -(void) encodeWithCoder:(NSCoder*) encoder;
--(id) initWithCoder:(NSCoder*) decoder;
+-(id) initWithCoder:    (NSCoder*) decoder;
 
 
 @end

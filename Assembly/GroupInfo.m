@@ -20,9 +20,9 @@
 {
     if(self = [super init])
 	{
-		group_members_info = [[NSMutableArray alloc] init];
-        color_id = 0;
-        group_name = @"NO NAME";
+		group_members_info  = [[NSMutableArray alloc] init];
+        color_id            = 0;
+        group_name          = @"NO NAME";
 	}
 	return self;
 }
@@ -31,17 +31,17 @@
 
 -(void) encodeWithCoder:(NSCoder*) encoder
 {
-    [encoder encodeObject:group_members_info forKey:@"group_members_info"];
-    [encoder encodeObject:group_name forKey:@"group_name"];
-    [encoder encodeInt:color_id forKey:@"color_id"];
+    [encoder encodeObject:group_members_info    forKey:@"group_members_info"];
+    [encoder encodeObject:group_name            forKey:@"group_name"];
+    [encoder encodeInt   :color_id              forKey:@"color_id"];
 }
 
 -(id) initWithCoder:(NSCoder*) decoder
 {
     if ((self = [super init])) {
-        group_members_info = [decoder decodeObjectForKey:@"group_members_info"];
-        group_name = [decoder decodeObjectForKey:@"group_name"];
-        color_id = [decoder decodeIntForKey:@"color_id"];
+        group_members_info  = [decoder decodeObjectForKey:@"group_members_info"];
+        group_name          = [decoder decodeObjectForKey:@"group_name"];
+        color_id            = [decoder decodeIntForKey   :@"color_id"];
     }
     return self;
 }
@@ -132,15 +132,15 @@
     NSLog(@"color is: %i", color_id);
     switch (color_id) {
         case 0:
-            return @"BlueIcon.png";
+            return @"Icon- Blue (Without Desk) 2.png";
         case 1:
-            return @"GreenIcon.png";
+            return @"Icon- Green (Without Desk) 2.png";
         case 2:
-            return @"Red Icon.png";
+            return @"Icon- Red (Without Desk) 2.png";
         case 3:
-            return @"YellowIcon.png";
+            return @"Icon- Yellow (Without Desk) 2.png";
         default:
-            return @"Images.jpeg";
+            return @"Icon- Blue (Without Desk) 2.png";
     }
 }
 

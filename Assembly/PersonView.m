@@ -96,37 +96,18 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (tableView == iMessageTable){
-        int myIndex = indexPath.row;
-        if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
-            
-            [[[assembled_groups objectAt:group_index]
-                                PersonAt:person_index]
-                                updatedefaultImessage   :NO
-                                at                      :myIndex];                              //updating default iMessage address
-        }
-        else{
-            myIndex = indexPath.row - [[[assembled_groups objectAt  :group_index]
-                                                        PersonAt    :person_index] phoneCount]; //Converting index for email array access
-            
-            //updating default iMessage address
-            [[[assembled_groups objectAt:group_index]
-                                PersonAt:person_index] updatedefaultImessage:YES at:myIndex];
-        }
-        //updating iMessage address display
-        [iMessageAddr setText:[[[assembled_groups objectAt  :group_index]
-                                                    PersonAt:person_index] displayImessage]];
         
+        [[[assembled_groups objectAt:group_index] PersonAt:person_index] updatedefaultImessage:indexPath.row];      //updating default iMessage address
+        [iMessageAddr setText:[[[assembled_groups objectAt:group_index] PersonAt:person_index] displayImessage]];   //updating iMessage address display
+        [iMessageTable reloadData];
     }
     else if(tableView == emailTable){
-        //Updating default email address
-        [[[assembled_groups objectAt:group_index]
-                            PersonAt:person_index] updateDefaultEmail:indexPath.row];
         
-        //updating email address display
-        [emailAddr setText:[[[assembled_groups objectAt:group_index]
-                                PersonAt:person_index] displayEmail]];
-        
+        [[[assembled_groups objectAt:group_index] PersonAt:person_index] updateDefaultEmail:indexPath.row];         //Updating default email address
+        [emailAddr setText:[[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmail]];         //updating email address display
+        [emailTable reloadData];                                                                                    //Saving Changes
     }
+    [assembled_groups saveChanges];
 }
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
@@ -157,7 +138,14 @@
     
     if (tableView == iMessageTable) {
         
-        //Fill the cells...
+        if(indexPath.row == [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayMsgInd]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else{
+            cell.accessoryType = normal;
+        }
+        cell.textLabel.backgroundColor      = [UIColor clearColor];
+        
         if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
             int myIndex = indexPath.row;
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
@@ -172,6 +160,15 @@
         }
     }
     else if (tableView == emailTable){
+        
+        if(indexPath.row == [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmailInd]){
+            cell.accessoryType                  = UITableViewCellAccessoryCheckmark;
+        }
+        else{
+            cell.accessoryType                  = normal;
+        }
+        cell.textLabel.backgroundColor      = [UIColor clearColor];
+        
         cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
                                                                                     PersonAt:person_index] emailArray]
                                                                                     objectAtIndex:indexPath.row]];
