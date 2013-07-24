@@ -1,27 +1,25 @@
 //
-//  Assemble.m
+//  ChangeGroup.m
 //  Assembly
 //
-//  Created by Evan Hsu on 3/21/13.
+//  Created by Evan Hsu on 7/14/13.
 //  Copyright (c) 2013 Evan Hsu. All rights reserved.
 //
 
-#import "Assemble.h"
+#import "ChangeGroup.h"
 #import "PersonalInfo.h"
 #import "GroupInfo.h"
 
-@interface Assemble ()
+@interface ChangeGroup ()
 
 @end
 
-@implementation Assemble
-{
+@implementation ChangeGroup{
     GroupInfo   *tempGroupInfo;
-    NSUInteger  *index;
 }
 
-//Shared Variables
 @synthesize assembled_groups;
+@synthesize group_index;
 
 //View Controller Objects
 @synthesize PeopleTable;
@@ -32,7 +30,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //Custom initialization
+        // Custom initialization
     }
     return self;
 }
@@ -40,15 +38,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    tempGroupInfo               = [[GroupInfo alloc] init];
+
+    tempGroupInfo               = [assembled_groups objectAt:group_index];
     PeopleTable.delegate        = self;
     PeopleTable.dataSource      = self;
     GroupNameTextField.delegate = self;
+    
+    GroupNameTextField.text             = [tempGroupInfo displayGroupName];
+    ColorSegment.selectedSegmentIndex   = [tempGroupInfo displayColorID];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning]; // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -68,6 +71,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 /*~~~~~~~~~~~~File Saving~~~~~~~~~~~~~~~*/
 - (void)saveCustomObject:(AllGroups *)obj {
     NSLog(@"saved custom object");
@@ -98,7 +102,6 @@
     }else{
         [tempGroupInfo      updateGroupName     :GroupNameTextField.text];              //Saving the Group Name
         [tempGroupInfo      updateColorID       :[ColorSegment selectedSegmentIndex]];  //Saving Color ID information
-        [assembled_groups   pushGroup           :tempGroupInfo];                        //Pusing Group object into assembled_groups array
         
         if(![assembled_groups saveChanges]) NSLog(@"Saving Failed!");
         [[self navigationController] popViewControllerAnimated:YES];
@@ -172,7 +175,7 @@
     [PeopleTable reloadData];                           //Updating Table Contents
     CFRelease(phone);
     CFRelease(email);
-
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
     
     return NO;
@@ -181,18 +184,6 @@
 -(BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //AudioServicesPlaySystemSound(1104);
-    /*
-    NSLog(@"Index %@ selected", [history_queue index:indexPath.row]);
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [myCalculator resultHistoryPress:[history_queue index:indexPath.row]];
-    [self displayCurrent];
-     */
-    //grab indexPath of the array
 }
 
 /*~~~~~~~~~~~~~~~~TableView Code~~~~~~~~~~~~~~~~~~~*/

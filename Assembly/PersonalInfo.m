@@ -77,12 +77,20 @@
 
 -(void) inputFirstName:(NSString *)firstName
 {
-    first_name = firstName;
+    if (firstName == Nil) {
+        first_name = @"";
+    }else{
+        first_name = firstName;
+    }
 }
 
 -(void) inputLastName:(NSString *)lastName
 {
-    last_name = lastName;
+    if (lastName == Nil) {
+        last_name = @"";
+    }else{
+        last_name = lastName;
+    }
 }
 
 -(void) inputEmail:(NSString *)e_mail

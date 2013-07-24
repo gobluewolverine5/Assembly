@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView      *GroupMembers;
 @property (strong, nonatomic) IBOutlet UINavigationItem *NavigationBar;
-@property (strong, nonatomic) IBOutlet UIImageView      *GroupImage;
+@property (strong, nonatomic) IBOutlet UIButton         *GroupImage;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem  *iMessage;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem  *email;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem  *editButton;

@@ -8,6 +8,7 @@
 
 #import "ViewGroup.h"
 #import "PersonView.h"
+#import "ChangeGroup.h"
 #import "BackgroundColor.h"
 
 @interface ViewGroup ()
@@ -55,13 +56,20 @@
     [GroupMembers reloadData];
 
     NavigationBar.title             = [[assembled_groups objectAt:index_selected] displayGroupName];
-    
-    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]]];
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateNormal];
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateSelected];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    BackgroundColor *bg_chooser     = [[BackgroundColor alloc] init];
+    BackgroundIMG.image             = [bg_chooser BGchooser:[[assembled_groups objectAt:index_selected] displayColorID]];
+    NavigationBar.title             = [[assembled_groups objectAt:index_selected] displayGroupName];
     [GroupMembers reloadData];
+    
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateNormal];
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateSelected];
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated
@@ -84,6 +92,11 @@
         tempPersonViewVC.group_index        = index_selected;
         tempPersonViewVC.person_index       = person_index;
         tempPersonViewVC.assembled_groups   = assembled_groups;
+    }
+    if ([segue.identifier isEqualToString:@"ChangeGroup"]) {
+        ChangeGroup *tempChangeGroup        = (ChangeGroup*) segue.destinationViewController;
+        tempChangeGroup.assembled_groups    = assembled_groups;
+        tempChangeGroup.group_index         = index_selected;
     }
 }
 
@@ -113,8 +126,8 @@
     //Storing Personal Info
     [tempPersonal inputFirstName    :first];
     [tempPersonal inputLastName     :last];
-    CFRelease((__bridge CFTypeRef)(first));
-    CFRelease((__bridge CFTypeRef)(last));
+    if(first != Nil)    CFRelease((__bridge CFTypeRef)(first));
+    if(last != Nil)     CFRelease((__bridge CFTypeRef)(last));
     
     if (ABPersonHasImageData(person)) {
         [tempPersonal inputPicAvail:TRUE];
@@ -196,7 +209,7 @@
     if ([MFMessageComposeViewController canSendText]) {
         controller.recipients               = recipients;
         controller.messageComposeDelegate   = self;
-        controller.body                     = @"Sent by Assembly for iPhone and iPad";
+        controller.body                     = @"Created by Assembly iOS\n-------------\n";
         
         [self presentViewController:controller animated:YES completion:nil];
     }
@@ -220,7 +233,7 @@
         mailViewController.mailComposeDelegate          = self;
         [mailViewController setSubject      :@""];
         [mailViewController setToRecipients :people];
-        [mailViewController setMessageBody:@"Sent by Assembly for iPhone and iPad" isHTML:NO];
+        [mailViewController setMessageBody:@"Created by Assembly iOS\n------------\n" isHTML:NO];
         
         
         [self presentViewController:mailViewController animated:YES completion:NULL];
