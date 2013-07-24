@@ -163,14 +163,14 @@
 		99E9B2201753B9620054F92E /* Background(7).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background(7).png"; sourceTree = "<group>"; };
 		99E9B2251753BB0D0054F92E /* BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundColor.h; sourceTree = "<group>"; };
 		99E9B2261753BB0D0054F92E /* BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundColor.m; sourceTree = "<group>"; };
-		99F7361216FA0FD20098BAE6 /* Assembly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assembly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F7361216FA0FD20098BAE6 /* Faction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F7361516FA0FD20098BAE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		99F7361716FA0FD20098BAE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99F7361916FA0FD20098BAE6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		99F7361D16FA0FD20098BAE6 /* Assembly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Assembly-Info.plist"; sourceTree = "<group>"; };
+		99F7361D16FA0FD20098BAE6 /* Faction-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Faction-Info.plist"; sourceTree = "<group>"; };
 		99F7361F16FA0FD20098BAE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		99F7362116FA0FD20098BAE6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		99F7362316FA0FD20098BAE6 /* Assembly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Assembly-Prefix.pch"; sourceTree = "<group>"; };
+		99F7362316FA0FD20098BAE6 /* Faction-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Faction-Prefix.pch"; sourceTree = "<group>"; };
 		99F7362416FA0FD20098BAE6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		99F7362516FA0FD20098BAE6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		99F7362716FA0FD20098BAE6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -178,9 +178,9 @@
 		99F7362B16FA0FD20098BAE6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		99F7362E16FA0FD20098BAE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		99F7363116FA0FD20098BAE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		99F7363B16FA0FD30098BAE6 /* AssemblyTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssemblyTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99F7363B16FA0FD30098BAE6 /* FactionTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FactionTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F7363C16FA0FD30098BAE6 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		99F7364416FA0FD30098BAE6 /* AssemblyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AssemblyTests-Info.plist"; sourceTree = "<group>"; };
+		99F7364416FA0FD30098BAE6 /* FactionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FactionTests-Info.plist"; sourceTree = "<group>"; };
 		99F7364616FA0FD30098BAE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		99F7364816FA0FD30098BAE6 /* AssemblyTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssemblyTests.h; sourceTree = "<group>"; };
 		99F7364916FA0FD30098BAE6 /* AssemblyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssemblyTests.m; sourceTree = "<group>"; };
@@ -387,8 +387,8 @@
 		99F7361316FA0FD20098BAE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				99F7361216FA0FD20098BAE6 /* Assembly.app */,
-				99F7363B16FA0FD30098BAE6 /* AssemblyTests.octest */,
+				99F7361216FA0FD20098BAE6 /* Faction.app */,
+				99F7363B16FA0FD30098BAE6 /* FactionTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -426,10 +426,10 @@
 		99F7361C16FA0FD20098BAE6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				99F7361D16FA0FD20098BAE6 /* Assembly-Info.plist */,
+				99F7361D16FA0FD20098BAE6 /* Faction-Info.plist */,
 				99F7361E16FA0FD20098BAE6 /* InfoPlist.strings */,
 				99F7362116FA0FD20098BAE6 /* main.m */,
-				99F7362316FA0FD20098BAE6 /* Assembly-Prefix.pch */,
+				99F7362316FA0FD20098BAE6 /* Faction-Prefix.pch */,
 				99F7362716FA0FD20098BAE6 /* Default.png */,
 				99F7362916FA0FD20098BAE6 /* Default@2x.png */,
 				99F7362B16FA0FD20098BAE6 /* Default-568h@2x.png */,
@@ -450,7 +450,7 @@
 		99F7364316FA0FD30098BAE6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				99F7364416FA0FD30098BAE6 /* AssemblyTests-Info.plist */,
+				99F7364416FA0FD30098BAE6 /* FactionTests-Info.plist */,
 				99F7364516FA0FD30098BAE6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -459,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		99F7361116FA0FD20098BAE6 /* Assembly */ = {
+		99F7361116FA0FD20098BAE6 /* Faction */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99F7364D16FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "Assembly" */;
+			buildConfigurationList = 99F7364D16FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "Faction" */;
 			buildPhases = (
 				99F7360E16FA0FD20098BAE6 /* Sources */,
 				99F7360F16FA0FD20098BAE6 /* Frameworks */,
@@ -471,14 +471,14 @@
 			);
 			dependencies = (
 			);
-			name = Assembly;
+			name = Faction;
 			productName = Assembly;
-			productReference = 99F7361216FA0FD20098BAE6 /* Assembly.app */;
+			productReference = 99F7361216FA0FD20098BAE6 /* Faction.app */;
 			productType = "com.apple.product-type.application";
 		};
-		99F7363A16FA0FD30098BAE6 /* AssemblyTests */ = {
+		99F7363A16FA0FD30098BAE6 /* FactionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 99F7365016FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "AssemblyTests" */;
+			buildConfigurationList = 99F7365016FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "FactionTests" */;
 			buildPhases = (
 				99F7363616FA0FD30098BAE6 /* Sources */,
 				99F7363716FA0FD30098BAE6 /* Frameworks */,
@@ -490,9 +490,9 @@
 			dependencies = (
 				99F7364116FA0FD30098BAE6 /* PBXTargetDependency */,
 			);
-			name = AssemblyTests;
+			name = FactionTests;
 			productName = AssemblyTests;
-			productReference = 99F7363B16FA0FD30098BAE6 /* AssemblyTests.octest */;
+			productReference = 99F7363B16FA0FD30098BAE6 /* FactionTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -504,7 +504,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Evan Hsu";
 			};
-			buildConfigurationList = 99F7360D16FA0FD20098BAE6 /* Build configuration list for PBXProject "Assembly" */;
+			buildConfigurationList = 99F7360D16FA0FD20098BAE6 /* Build configuration list for PBXProject "Faction" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -516,8 +516,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				99F7361116FA0FD20098BAE6 /* Assembly */,
-				99F7363A16FA0FD30098BAE6 /* AssemblyTests */,
+				99F7361116FA0FD20098BAE6 /* Faction */,
+				99F7363A16FA0FD30098BAE6 /* FactionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -643,7 +643,7 @@
 /* Begin PBXTargetDependency section */
 		99F7364116FA0FD30098BAE6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 99F7361116FA0FD20098BAE6 /* Assembly */;
+			target = 99F7361116FA0FD20098BAE6 /* Faction */;
 			targetProxy = 99F7364016FA0FD30098BAE6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -746,10 +746,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
-				INFOPLIST_FILE = "Assembly/Assembly-Info.plist";
+				GCC_PREFIX_HEADER = "Assembly/Faction-Prefix.pch";
+				INFOPLIST_FILE = "Assembly/Faction-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Faction;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -758,10 +758,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
-				INFOPLIST_FILE = "Assembly/Assembly-Info.plist";
+				GCC_PREFIX_HEADER = "Assembly/Faction-Prefix.pch";
+				INFOPLIST_FILE = "Assembly/Faction-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Faction;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -776,8 +776,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
-				INFOPLIST_FILE = "AssemblyTests/AssemblyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "AssemblyTests/FactionTests-Info.plist";
+				PRODUCT_NAME = FactionTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -793,8 +793,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Assembly/Assembly-Prefix.pch";
-				INFOPLIST_FILE = "AssemblyTests/AssemblyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "AssemblyTests/FactionTests-Info.plist";
+				PRODUCT_NAME = FactionTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -803,7 +803,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		99F7360D16FA0FD20098BAE6 /* Build configuration list for PBXProject "Assembly" */ = {
+		99F7360D16FA0FD20098BAE6 /* Build configuration list for PBXProject "Faction" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99F7364B16FA0FD30098BAE6 /* Debug */,
@@ -812,7 +812,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99F7364D16FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "Assembly" */ = {
+		99F7364D16FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "Faction" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99F7364E16FA0FD30098BAE6 /* Debug */,
@@ -821,7 +821,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		99F7365016FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "AssemblyTests" */ = {
+		99F7365016FA0FD30098BAE6 /* Build configuration list for PBXNativeTarget "FactionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				99F7365116FA0FD30098BAE6 /* Debug */,

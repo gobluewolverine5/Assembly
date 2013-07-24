@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
                BuildableName = "Assembly.app"
-               BlueprintName = "Assembly"
-               ReferencedContainer = "container:Assembly.xcodeproj">
+               BlueprintName = "Faction"
+               ReferencedContainer = "container:Faction.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99F7363A16FA0FD30098BAE6"
                BuildableName = "AssemblyTests.octest"
-               BlueprintName = "AssemblyTests"
-               ReferencedContainer = "container:Assembly.xcodeproj">
+               BlueprintName = "FactionTests"
+               ReferencedContainer = "container:Faction.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
             BuildableName = "Assembly.app"
-            BlueprintName = "Assembly"
-            ReferencedContainer = "container:Assembly.xcodeproj">
+            BlueprintName = "Faction"
+            ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
             BuildableName = "Assembly.app"
-            BlueprintName = "Assembly"
-            ReferencedContainer = "container:Assembly.xcodeproj">
+            BlueprintName = "Faction"
+            ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
             BuildableName = "Assembly.app"
-            BlueprintName = "Assembly"
-            ReferencedContainer = "container:Assembly.xcodeproj">
+            BlueprintName = "Faction"
+            ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
