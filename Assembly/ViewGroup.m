@@ -209,7 +209,7 @@
     if ([MFMessageComposeViewController canSendText]) {
         controller.recipients               = recipients;
         controller.messageComposeDelegate   = self;
-        controller.body                     = @"Created by Assembly iOS\n-------------\n";
+        controller.body                     = @"Created by Faction iOS\n-------------\n";
         
         [self presentViewController:controller animated:YES completion:nil];
     }
@@ -233,7 +233,7 @@
         mailViewController.mailComposeDelegate          = self;
         [mailViewController setSubject      :@""];
         [mailViewController setToRecipients :people];
-        [mailViewController setMessageBody:@"Created by Assembly iOS\n------------\n" isHTML:NO];
+        [mailViewController setMessageBody:@"Created by Faction iOS\n------------\n" isHTML:NO];
         
         
         [self presentViewController:mailViewController animated:YES completion:NULL];

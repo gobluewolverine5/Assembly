@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
-               BuildableName = "Assembly.app"
+               BuildableName = "Faction.app"
                BlueprintName = "Faction"
                ReferencedContainer = "container:Faction.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "99F7363A16FA0FD30098BAE6"
-               BuildableName = "AssemblyTests.octest"
+               BuildableName = "FactionTests.octest"
                BlueprintName = "FactionTests"
                ReferencedContainer = "container:Faction.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
-            BuildableName = "Assembly.app"
+            BuildableName = "Faction.app"
             BlueprintName = "Faction"
             ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
-            BuildableName = "Assembly.app"
+            BuildableName = "Faction.app"
             BlueprintName = "Faction"
             ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "99F7361116FA0FD20098BAE6"
-            BuildableName = "Assembly.app"
+            BuildableName = "Faction.app"
             BlueprintName = "Faction"
             ReferencedContainer = "container:Faction.xcodeproj">
          </BuildableReference>
