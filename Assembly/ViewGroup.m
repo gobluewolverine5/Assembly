@@ -11,6 +11,7 @@
 #import "ChangeGroup.h"
 #import "BackgroundColor.h"
 #import "AddressBookAdd.h"
+#import "emailSubject.h"
 
 @interface ViewGroup ()
 
@@ -99,6 +100,11 @@
         tempChangeGroup.assembled_groups    = assembled_groups;
         tempChangeGroup.group_index         = index_selected;
     }
+    if ([segue.identifier isEqualToString:@"toSubject"]) {
+        emailSubject *emailSubjectVC        = (emailSubject*) segue.destinationViewController;
+        emailSubjectVC.assembled_groups     = assembled_groups;
+        emailSubjectVC.index_selected       = index_selected;
+    }
 }
 
 /*~~~~~~~~~~~~Address Book Code~~~~~~~~~~~~~~~~~*/
@@ -181,7 +187,10 @@
     for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
         [people addObject:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail]];
     }
+    //emailSubject *emailSubjectVC = [[emailSubject alloc]init];
+    //[self.navigationController pushViewController:emailSubjectVC animated:YES];
     
+    /*
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate          = self;
@@ -194,7 +203,8 @@
     }
     else{
         NSLog(@"Could not open email");
-    }
+    }*/
+     
 }
 
 /*~~~~~~~~~~~~TableView Code~~~~~~~~~~~~~~*/
