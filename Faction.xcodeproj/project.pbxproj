@@ -39,6 +39,8 @@
 		9965B8AB177FE31700171C0E /* (WHITE) Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9965B8A6177FE31700171C0E /* (WHITE) Blue.png */; };
 		9965B8AC177FE31700171C0E /* (WHITE) Background .png in Resources */ = {isa = PBXBuildFile; fileRef = 9965B8A7177FE31700171C0E /* (WHITE) Background .png */; };
 		997E4AF8170DE93300627393 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997E4AF7170DE93300627393 /* MessageUI.framework */; };
+		999CDB2A17B7BE760016233A /* AddressBookAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 999CDB2917B7BE760016233A /* AddressBookAdd.m */; };
+		999CDB2E17BB152F0016233A /* emailSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 999CDB2D17BB152F0016233A /* emailSubject.m */; };
 		99C1853F173F64BA004AEC18 /* 1368355654_Cancel__Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C1853E173F64BA004AEC18 /* 1368355654_Cancel__Red.png */; };
 		99C18541173F652D004AEC18 /* 1368355881_Cancel__Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C18540173F652D004AEC18 /* 1368355881_Cancel__Red.png */; };
 		99C18543173F6555004AEC18 /* 1368355926_Cancel__Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C18542173F6555004AEC18 /* 1368355926_Cancel__Red.png */; };
@@ -134,6 +136,10 @@
 		9965B8A6177FE31700171C0E /* (WHITE) Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "(WHITE) Blue.png"; sourceTree = "<group>"; };
 		9965B8A7177FE31700171C0E /* (WHITE) Background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "(WHITE) Background .png"; sourceTree = "<group>"; };
 		997E4AF7170DE93300627393 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		999CDB2817B7BE760016233A /* AddressBookAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookAdd.h; sourceTree = "<group>"; };
+		999CDB2917B7BE760016233A /* AddressBookAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookAdd.m; sourceTree = "<group>"; };
+		999CDB2C17BB152F0016233A /* emailSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = emailSubject.h; path = ../emailSubject.h; sourceTree = "<group>"; };
+		999CDB2D17BB152F0016233A /* emailSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = emailSubject.m; path = ../emailSubject.m; sourceTree = "<group>"; };
 		99C1853E173F64BA004AEC18 /* 1368355654_Cancel__Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1368355654_Cancel__Red.png; path = Images/1368355654_Cancel__Red.png; sourceTree = SOURCE_ROOT; };
 		99C18540173F652D004AEC18 /* 1368355881_Cancel__Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1368355881_Cancel__Red.png; path = Images/1368355881_Cancel__Red.png; sourceTree = SOURCE_ROOT; };
 		99C18542173F6555004AEC18 /* 1368355926_Cancel__Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1368355926_Cancel__Red.png; path = Images/1368355926_Cancel__Red.png; sourceTree = SOURCE_ROOT; };
@@ -298,6 +304,8 @@
 		992C64EE16FC22FF00CEA5C1 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				999CDB2C17BB152F0016233A /* emailSubject.h */,
+				999CDB2D17BB152F0016233A /* emailSubject.m */,
 				99F7365816FA1DC40098BAE6 /* GroupBrowserViewController.h */,
 				99F7365916FA1DC40098BAE6 /* GroupBrowserViewController.m */,
 				992C64E516FBE22300CEA5C1 /* Assemble.h */,
@@ -348,6 +356,17 @@
 				9965B89D177FDFDA00171C0E /* Yellow BG.png */,
 			);
 			path = v2;
+			sourceTree = "<group>";
+		};
+		999CDB2B17B7DCE60016233A /* Object Class */ = {
+			isa = PBXGroup;
+			children = (
+				999CDB2817B7BE760016233A /* AddressBookAdd.h */,
+				999CDB2917B7BE760016233A /* AddressBookAdd.m */,
+				99E9B2251753BB0D0054F92E /* BackgroundColor.h */,
+				99E9B2261753BB0D0054F92E /* BackgroundColor.m */,
+			);
+			name = "Object Class";
 			sourceTree = "<group>";
 		};
 		99E3B49116FFCD2D00C0C69C /* Group Icons */ = {
@@ -410,8 +429,7 @@
 		99F7361B16FA0FD20098BAE6 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
-				99E9B2251753BB0D0054F92E /* BackgroundColor.h */,
-				99E9B2261753BB0D0054F92E /* BackgroundColor.m */,
+				999CDB2B17B7DCE60016233A /* Object Class */,
 				992C64EE16FC22FF00CEA5C1 /* View Controllers */,
 				992C64EA16FC21FA00CEA5C1 /* Data Structure */,
 				992C64E916FBE24C00CEA5C1 /* Images */,
@@ -627,6 +645,8 @@
 				99E3B49C16FFE07C00C0C69C /* PersonView.m in Sources */,
 				99E9B2271753BB0D0054F92E /* BackgroundColor.m in Sources */,
 				99CB34BD179267E600F5B099 /* ChangeGroup.m in Sources */,
+				999CDB2A17B7BE760016233A /* AddressBookAdd.m in Sources */,
+				999CDB2E17BB152F0016233A /* emailSubject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,9 @@
     NSString        *first_name;
     NSString        *last_name;
     NSMutableArray  *email;
+    NSMutableArray  *email_label;
     NSMutableArray  *phone_num;
+    NSMutableArray  *phone_label;
     NSString        *default_email;
     NSString        *default_phone_num;
     NSString        *default_imessage;
@@ -30,7 +32,9 @@
         default_phone_num   = @"N/A";
         default_imessage    = @"N/A";
         phone_num           = [[NSMutableArray alloc]init];
-        email               = [[NSMutableArray alloc] init];
+        phone_label         = [[NSMutableArray alloc]init];
+        email               = [[NSMutableArray alloc]init];
+        email_label         = [[NSMutableArray alloc]init];
         contact_pic         = [[UIImage alloc] init];
         pic_avail           = FALSE;
     }
@@ -44,7 +48,9 @@
     [encoder encodeObject:first_name         forKey:@"first_name"];
     [encoder encodeObject:last_name          forKey:@"last_name"];
     [encoder encodeObject:email              forKey:@"email"];
+    [encoder encodeObject:email_label        forKey:@"email_label"];
     [encoder encodeObject:phone_num          forKey:@"phone_num"];
+    [encoder encodeObject:phone_label        forKey:@"phone_label"];
     [encoder encodeObject:default_email      forKey:@"default_email"];
     [encoder encodeObject:default_phone_num  forKey:@"default_phone_num"];
     [encoder encodeObject:default_imessage   forKey:@"default_imessage"];
@@ -60,7 +66,9 @@
         first_name          = [decoder decodeObjectForKey:@"first_name"];
         last_name           = [decoder decodeObjectForKey:@"last_name"];
         email               = [decoder decodeObjectForKey:@"email"];
+        email_label         = [decoder decodeObjectForKey:@"email_label"];
         phone_num           = [decoder decodeObjectForKey:@"phone_num"];
+        phone_label         = [decoder decodeObjectForKey:@"phone_label"];
         default_email       = [decoder decodeObjectForKey:@"default_email"];
         default_phone_num   = [decoder decodeObjectForKey:@"default_phone_num"];
         default_imessage    = [decoder decodeObjectForKey:@"default_imessage"];
@@ -99,10 +107,19 @@
     default_email = e_mail;
 }
 
+-(void) inputEmailLabel:(NSString*) e_label
+{
+    [email_label addObject:e_label];
+}
 -(void) inputPhoneNum:(NSString *)p_num
 {
     [phone_num addObject:p_num];
     default_phone_num = p_num;
+}
+
+-(void) inputPhoneLabel:(NSString *)p_label
+{
+    [phone_label addObject:p_label];
 }
 -(void) inputContactPic: (UIImage *) picture
 {
@@ -112,6 +129,8 @@
 {
     pic_avail = avail;
 }
+
+
 /*~~~~~~~~~~~~~~Update Attributes Functions~~~~~~~~~~~~~~*/
 
 -(void) updateDefaultEmail:(int) index
@@ -197,14 +216,24 @@
     return [phone_num count];
 }
 
--(NSMutableArray*) emailArray;
+-(NSMutableArray*) emailArray
 {
     return email;
 }
 
--(NSMutableArray*) phoneArray;
+-(NSMutableArray*) emailLabel
+{
+    return email_label;
+}
+
+-(NSMutableArray*) phoneArray
 {
     return phone_num;
+}
+
+-(NSMutableArray*) phoneLabel
+{
+    return phone_label;
 }
 
 

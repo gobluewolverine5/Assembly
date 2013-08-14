@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 @interface PersonalInfo : NSObject<NSCoding>
 
@@ -14,9 +16,12 @@
 -(void) inputFirstName: (NSString*) firstName;
 -(void) inputLastName:  (NSString*) lastName;
 -(void) inputEmail:     (NSString*) e_mail;
+-(void) inputEmailLabel:(NSString*) e_label;
 -(void) inputPhoneNum:  (NSString*) p_num;
+-(void) inputPhoneLabel:(NSString*) p_label;
 -(void) inputContactPic:(UIImage*)  picture;
 -(void) inputPicAvail:  (BOOL)      avail;
+
 
 //Update Attributes Functions
 -(void) updateDefaultEmail:     (int) index;
@@ -37,7 +42,9 @@
 -(int)              emailCount;
 -(int)              phoneCount;
 -(NSMutableArray*)  emailArray;
+-(NSMutableArray*)  emailLabel;
 -(NSMutableArray*)  phoneArray;
+-(NSMutableArray*)  phoneLabel;
 
 //File Saving
 - (void) encodeWithCoder:(NSCoder*) encoder;

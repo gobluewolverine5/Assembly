@@ -130,7 +130,7 @@
     UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     cell.textLabel.numberOfLines                    = 1;
     cell.textLabel.adjustsLetterSpacingToFitWidth   = YES;
@@ -151,12 +151,18 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
                                                                                         PersonAt:person_index] phoneArray]
                                                                                         objectAtIndex:myIndex]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[[[assembled_groups    objectAt:group_index]
+                                                                PersonAt:person_index] phoneLabel]
+                                                                objectAtIndex:myIndex] ];
         }
         else{
             int myIndex = indexPath.row - [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
                                                                                         PersonAt:person_index] emailArray]
                                                                                         objectAtIndex:myIndex]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
+                                                                            PersonAt:person_index] emailLabel]
+                                                                          objectAtIndex:myIndex]];
         }
     }
     else if (tableView == emailTable){
@@ -172,6 +178,9 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
                                                                                     PersonAt:person_index] emailArray]
                                                                                     objectAtIndex:indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
+                                                                        PersonAt:person_index] emailLabel]
+                                                                      objectAtIndex:indexPath.row]];
     }
     return cell;
 }
