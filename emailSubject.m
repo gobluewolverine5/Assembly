@@ -11,24 +11,30 @@
 #import "PersonView.h"
 
 @interface emailSubject (){
-    NSData *image_data;
+    UIImage *image;
 }
 
 @end
 
 @implementation emailSubject
-@synthesize _email_btn;
-@synthesize _subject_field;
-@synthesize _preview;
 
+//Objects
+@synthesize _subject_field;
+@synthesize _indicator;
+@synthesize _attach_bar;
+@synthesize _status;
+
+//Passed in variables
 @synthesize assembled_groups;
 @synthesize index_selected;
+
+@synthesize poc;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _status.tintColor = [UIColor redColor];
     }
     return self;
 }
@@ -36,10 +42,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _subject_field.delegate = self;
+    _subject_field.delegate     = self;
     [_subject_field becomeFirstResponder];
+    _subject_field.frame = CGRectMake(_subject_field.frame.origin.x, _subject_field.frame.origin.y, _subject_field.frame.size.width, 44);
+    
+    _indicator.hidesWhenStopped = YES;
+    [_indicator stopAnimating];
+}
+- (void) viewWillDisappear:(BOOL)animated
+{
+    if ([poc isPopoverVisible]) [poc dismissPopoverAnimated:YES];
 }
 
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([poc isPopoverVisible]) [poc dismissPopoverAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -49,7 +67,25 @@
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+        [textField resignFirstResponder];
+        [self prepareEmail];
+        return YES;
+}
+
+-(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult: (MFMailComposeResult)result error:(NSError*)error {
+    if ([poc isPopoverVisible]) [poc dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:NO completion:NULL];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)prepareEmail
+{
+    if(![_indicator isAnimating]){
+        [_indicator startAnimating];
+        NSLog(@"starting to animate");
+    }
+    
     NSMutableArray *people = [[NSMutableArray alloc]init];
     
     for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
@@ -57,62 +93,82 @@
     }
     
     if ([MFMailComposeViewController canSendMail]) {
+        
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate          = self;
-        [mailViewController setSubject      :_subject_field.text];
         [mailViewController setToRecipients :people];
         [mailViewController setMessageBody:@"Created by Faction iOS\n------------\n" isHTML:NO];
-        
-        if (image_data) {
-            [mailViewController addAttachmentData:image_data  mimeType:@"image/png" fileName:@"attached_image"];
+        [mailViewController setSubject      :_subject_field.text];
+            
+        if (image) {
+            NSData *image_data = UIImageJPEGRepresentation(image, 1);
+            [mailViewController addAttachmentData:image_data  mimeType:@"image/jpeg" fileName:@"attached_image"];
+            
         }
-        
         [self presentViewController:mailViewController animated:YES completion:NULL];
     }
-    else{
+    else {
         NSLog(@"Could not open email");
     }
-    return YES;
+    [_indicator stopAnimating];
+
 }
-
--(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult: (MFMailComposeResult)result error:(NSError*)error {
-    
-    [self dismissViewControllerAnimated:NO completion:NULL];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
 
 - (IBAction)attachFile:(id)sender {
+    
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [imagePicker setDelegate:self];
-    [self presentViewController:imagePicker animated:YES completion:NULL];
-
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        
+    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
+        [self presentViewController:imagePicker animated:YES completion:NULL];
+        
+    }else if(![poc isPopoverVisible]){
+        
+        self.poc = [[UIPopoverController alloc]initWithContentViewController:imagePicker];
+        [poc presentPopoverFromBarButtonItem:_attach_bar permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+    }
 }
 
 - (IBAction)takePic:(id)sender {
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    
         [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
         [imagePicker setDelegate:self];
         [self presentViewController:imagePicker animated:YES completion:NULL];
+        //_status.tintColor = [UIColor greenColor];
+
         
     }else {
-        //Put error code here
         NSLog(@"No camera found on device");
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle     :@"Warning"
+                              message           :@"Camera not found on device!"
+                              delegate          :nil
+                              cancelButtonTitle :@"OK"
+                              otherButtonTitles :nil];
+        [alert show];
     }
+}
+
+- (IBAction)compose:(id)sender {
+    [self prepareEmail];
 }
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image_data = UIImagePNGRepresentation(image);
     
-    [_preview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
+    if ([poc isPopoverVisible]) [poc dismissPopoverAnimated:YES];
+    
+    image               = [info objectForKey:UIImagePickerControllerOriginalImage];
+    _status.tintColor   = [UIColor greenColor];
+    
+
 }
 
 @end

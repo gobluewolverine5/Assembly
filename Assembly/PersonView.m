@@ -67,9 +67,9 @@
     LastName.adjustsLetterSpacingToFitWidth     = YES;
     
     [iMessageAddr setText:  [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayImessage]];
-    [emailAddr setText:     [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmail]];
-    [FirstName setText:     [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayFirst]];
-    [LastName setText:      [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayLast]];
+    [emailAddr    setText:  [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmail]];
+    [FirstName    setText:  [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayFirst]];
+    [LastName     setText:  [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayLast]];
     
     if ([[[assembled_groups objectAt:group_index] PersonAt:person_index] displayAvail]) {
         PersonImage.image = [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayPic];
@@ -138,6 +138,7 @@
     
     if (tableView == iMessageTable) {
         
+        //Placing check mark
         if(indexPath.row == [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayMsgInd]){
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
@@ -148,39 +149,35 @@
         
         if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
             int myIndex = indexPath.row;
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                                        PersonAt:person_index] phoneArray]
-                                                                                        objectAtIndex:myIndex]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[[[assembled_groups    objectAt:group_index]
-                                                                PersonAt:person_index] phoneLabel]
-                                                                objectAtIndex:myIndex] ];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneArray] objectAtIndex:myIndex]];
+            NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneLabel] objectAtIndex:myIndex]];
+            if (detail) cell.detailTextLabel.text   = detail;
+            else cell.detailTextLabel.text          = @"";
+            
         }
         else{
             int myIndex = indexPath.row - [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                                        PersonAt:person_index] emailArray]
-                                                                                        objectAtIndex:myIndex]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                            PersonAt:person_index] emailLabel]
-                                                                          objectAtIndex:myIndex]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailArray] objectAtIndex:myIndex]];
+            NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:myIndex]];
+            if (detail) cell.detailTextLabel.text   = detail;
+            else cell.detailTextLabel.text          = @"";
         }
     }
     else if (tableView == emailTable){
         
+        //Placing check mark
         if(indexPath.row == [[[assembled_groups objectAt:group_index] PersonAt:person_index] displayEmailInd]){
-            cell.accessoryType                  = UITableViewCellAccessoryCheckmark;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
         else{
-            cell.accessoryType                  = normal;
+            cell.accessoryType = normal;
         }
         cell.textLabel.backgroundColor      = [UIColor clearColor];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                                    PersonAt:person_index] emailArray]
-                                                                                    objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index]
-                                                                        PersonAt:person_index] emailLabel]
-                                                                      objectAtIndex:indexPath.row]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailArray] objectAtIndex:indexPath.row]];
+        NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:indexPath.row]];
+        if (detail) cell.detailTextLabel.text   = detail;
+        else cell.detailTextLabel.text          = @"";
     }
     return cell;
 }

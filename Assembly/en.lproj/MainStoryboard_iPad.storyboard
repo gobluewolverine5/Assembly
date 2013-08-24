@@ -254,41 +254,61 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="W6S-py-qBI">
-                                <rect key="frame" x="94" y="411" width="581" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter Subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dJ6-oS-SKN">
-                                <rect key="frame" x="194" y="158" width="380" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="62"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter Subject:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dJ6-oS-SKN">
+                                <rect key="frame" x="35" y="266" width="145" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3db-Jj-EeE">
-                                <rect key="frame" x="284" y="741" width="201" height="70"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="jCO-c6-lFa">
+                                <rect key="frame" x="366" y="466" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="E-Mail">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendMail:" destination="ZDm-Cl-n2v" eventType="touchUpInside" id="yuX-bT-kp1"/>
-                                </connections>
-                            </button>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="aF1-Yg-Q1v">
+                                <rect key="frame" x="193" y="264" width="555" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="8cX-bl-fJX">
+                                <rect key="frame" x="0.0" y="43" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8q6-i7-qx1"/>
+                                    <barButtonItem systemItem="camera" id="1XZ-8e-KPf">
+                                        <connections>
+                                            <action selector="takePic:" destination="ZDm-Cl-n2v" id="unU-OH-NXa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="96" style="plain" systemItem="fixedSpace" id="V4I-Y6-0Wx"/>
+                                    <barButtonItem image="Circle.png" style="plain" id="g2f-zc-4hl"/>
+                                    <barButtonItem width="94" style="plain" systemItem="fixedSpace" id="0HU-CU-sFk"/>
+                                    <barButtonItem systemItem="organize" id="nQV-a6-CHJ">
+                                        <connections>
+                                            <action selector="attachFile:" destination="ZDm-Cl-n2v" id="Jbm-1g-U1f"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yDj-0v-zaM"/>
+                                </items>
+                                <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kBJ-Rb-FVw"/>
+                    <navigationItem key="navigationItem" id="kBJ-Rb-FVw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="v8R-XO-Fu4">
+                            <connections>
+                                <action selector="compose:" destination="ZDm-Cl-n2v" id="fj0-Vg-k7E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="_email_btn" destination="3db-Jj-EeE" id="zQK-Zb-mH4"/>
-                        <outlet property="_subject_field" destination="W6S-py-qBI" id="iV0-z3-5l7"/>
+                        <outlet property="_attach_bar" destination="nQV-a6-CHJ" id="3YC-51-R5Z"/>
+                        <outlet property="_indicator" destination="jCO-c6-lFa" id="wtj-KQ-AQO"/>
+                        <outlet property="_status" destination="g2f-zc-4hl" id="9zp-cF-jVB"/>
+                        <outlet property="_subject_field" destination="aF1-Yg-Q1v" id="tYb-bp-5aR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3V-3t-sGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -405,19 +425,19 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NLR-cC-dUV">
-                                <rect key="frame" x="69" y="66" width="290" height="36"/>
+                                <rect key="frame" x="69" y="83" width="290" height="36"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dlf-Gq-grL">
-                                <rect key="frame" x="69" y="119" width="290" height="29"/>
+                                <rect key="frame" x="69" y="136" width="290" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="images.jpeg" id="Q9z-rW-TE5">
-                                <rect key="frame" x="530" y="77" width="79" height="71"/>
+                                <rect key="frame" x="580" y="94" width="79" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KyX-Bt-ntB">
@@ -634,6 +654,7 @@
         <image name="(WHITE) Blue.png" width="768" height="960"/>
         <image name="(WHITE) Red.png" width="768" height="960"/>
         <image name="1368355926_Cancel__Red.png" width="32" height="32"/>
+        <image name="Circle.png" width="30" height="30"/>
         <image name="Icon- Blue (Without Desk) 2.png" width="80" height="76"/>
         <image name="Icon- Red (Without Desk) 2.png" width="80" height="76"/>
         <image name="icon(144).png" width="114" height="114"/>
@@ -702,6 +723,9 @@
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
         </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
         <class className="ViewGroup" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewGroup.h"/>
             <relationships>
@@ -720,9 +744,15 @@
         <class className="emailSubject" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/emailSubject.h"/>
             <relationships>
-                <relationship kind="action" name="sendMail:"/>
-                <relationship kind="outlet" name="_email_btn" candidateClass="UIButton"/>
+                <relationship kind="action" name="attachFile:"/>
+                <relationship kind="action" name="compose:"/>
+                <relationship kind="action" name="takePic:"/>
+                <relationship kind="outlet" name="_attach_bar" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="_indicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="_status" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="_subject_field" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="poc" candidateClass="UIPopoverController"/>
+                <relationship kind="outlet" name="secbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
     </classes>
