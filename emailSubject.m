@@ -34,7 +34,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _status.tintColor = [UIColor redColor];
+       
     }
     return self;
 }
@@ -48,6 +48,8 @@
     
     _indicator.hidesWhenStopped = YES;
     [_indicator stopAnimating];
+    
+     _status.tintColor = [UIColor redColor];
 }
 - (void) viewWillDisappear:(BOOL)animated
 {
@@ -89,7 +91,10 @@
     NSMutableArray *people = [[NSMutableArray alloc]init];
     
     for (int i = 0; i < [[assembled_groups objectAt:index_selected] count]; i++) {
-        [people addObject:[[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail]];
+        NSString *email_addr = [[[assembled_groups objectAt:index_selected] PersonAt:i] displayEmail];
+        if (![email_addr isEqual: @"N/A"]) {
+            [people addObject:email_addr];
+        }
     }
     
     if ([MFMailComposeViewController canSendMail]) {

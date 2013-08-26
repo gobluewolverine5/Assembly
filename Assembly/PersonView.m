@@ -150,7 +150,7 @@
         if (indexPath.row < [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount]) {
             int myIndex = indexPath.row;
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneArray] objectAtIndex:myIndex]];
-            NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneLabel] objectAtIndex:myIndex]];
+            NSString *detail    = [[[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneLabel] objectAtIndex:myIndex];
             if (detail) cell.detailTextLabel.text   = detail;
             else cell.detailTextLabel.text          = @"";
             
@@ -158,7 +158,7 @@
         else{
             int myIndex = indexPath.row - [[[assembled_groups objectAt:group_index] PersonAt:person_index] phoneCount];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailArray] objectAtIndex:myIndex]];
-            NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:myIndex]];
+            NSString *detail    = [[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:myIndex];
             if (detail) cell.detailTextLabel.text   = detail;
             else cell.detailTextLabel.text          = @"";
         }
@@ -175,7 +175,7 @@
         cell.textLabel.backgroundColor      = [UIColor clearColor];
         
         cell.textLabel.text = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailArray] objectAtIndex:indexPath.row]];
-        NSString *detail    = [NSString stringWithFormat:@"%@",[[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:indexPath.row]];
+        NSString *detail    = [[[[assembled_groups objectAt:group_index] PersonAt:person_index] emailLabel] objectAtIndex:indexPath.row];
         if (detail) cell.detailTextLabel.text   = detail;
         else cell.detailTextLabel.text          = @"";
     }
