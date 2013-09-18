@@ -58,6 +58,8 @@
     [GroupMembers reloadData];
 
     NavigationBar.title             = [[assembled_groups objectAt:index_selected] displayGroupName];
+    //[GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:ui];
+    [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateApplication];
     [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateNormal];
     [GroupImage setImage:[UIImage imageNamed:[[assembled_groups objectAt:index_selected]displayPicture]] forState:UIControlStateSelected];
 }

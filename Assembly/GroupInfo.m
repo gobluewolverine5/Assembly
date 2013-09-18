@@ -132,15 +132,15 @@
     NSLog(@"color is: %i", color_id);
     switch (color_id) {
         case 0:
-            return @"Icon- Blue (Without Desk) 2.png";
+            return @"1b.png";
         case 1:
-            return @"Icon- Green (Without Desk) 2.png";
+            return @"1g.png";
         case 2:
-            return @"Icon- Red (Without Desk) 2.png";
+            return @"1r.png";
         case 3:
-            return @"Icon- Yellow (Without Desk) 2.png";
+            return @"1y.png";
         default:
-            return @"Icon- Blue (Without Desk) 2.png";
+            return @"1b.png";
     }
 }
 
